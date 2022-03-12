@@ -16,7 +16,8 @@
             android:background="@color/blueComplement"
             android:layout_width="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:titleTextColor="@color/yellowOrange"/>
+            android:titleTextColor="@color/yellowOrange"
+            app:menu="@menu/main_drawer_menu"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
