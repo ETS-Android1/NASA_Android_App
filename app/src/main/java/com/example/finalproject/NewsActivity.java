@@ -14,6 +14,7 @@ public class NewsActivity extends DrawerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setting common nav drawer and toolbar
         activityNewsBinding = ActivityNewsBinding.inflate(getLayoutInflater());
         allocateActivityTitle("News");
         setContentView(activityNewsBinding.getRoot());
