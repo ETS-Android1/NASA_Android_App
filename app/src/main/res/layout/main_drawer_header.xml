@@ -8,18 +8,19 @@
     android:orientation="vertical">
 
     <ImageView
+        android:paddingTop="30dp"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_news"/>
+        android:src="@drawable/ic_news" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="News App"
+        android:text="@string/appAct"
         android:textColor="@color/yellowOrange"
         android:layout_gravity="center"
         android:textSize="15sp"
-        android:textStyle="bold"/>z
+        android:textStyle="bold"/>
 
 </LinearLayout>

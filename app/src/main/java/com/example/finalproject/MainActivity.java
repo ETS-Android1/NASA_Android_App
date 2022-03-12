@@ -4,11 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.finalproject.databinding.ActivityMainBinding;
+import com.example.finalproject.databinding.ActivityNewsBinding;
+
+public class MainActivity extends DrawerBaseActivity {
+    //variable to hold bindings
+    ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //inflate the common navbar
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        allocateActivityTitle("Main");
+        setContentView(activityMainBinding.getRoot());
+
     }
 }

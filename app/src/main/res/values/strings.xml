@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name"></string>
     <string name="menu_drawer_open">Open</string>
     <string name="menu_drawer_closed">Closed</string>
+    <string name="appAct">Activity Name placeholer</string>
+    <string name="newsPage">News Page</string>
+    <string name="bookmarkPage">Bookmark Page</string>
 
 </resources>
