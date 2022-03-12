@@ -2,9 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:FinalProject="http://schemas.android.com/tools">
-  <group
-      android:checkableBehavior="single">
-
+    <group android:checkableBehavior="single">
+        <!-- menuitems for nav drawer and toolbar -->
         <item android:id="@+id/nav_customers"
             android:icon="@drawable/ic_home"
             android:title="Home"
@@ -33,7 +32,6 @@
           android:title="Bookmark"
           android:visible="true"
           app:showAsAction="always" />
-
 
 
 <!--        <item android:id="@+id/lock"-->

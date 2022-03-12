@@ -20,9 +20,12 @@ import com.google.android.material.navigation.NavigationView;
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+
     @Override
     public void setContentView(View view) {
+        //inflate drawer layout
         drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer_base, null);
+        //in frame of contentLayout
         FrameLayout container = drawerLayout.findViewById(R.id.activityContainer);
         container.addView(view);
         super.setContentView(drawerLayout);
