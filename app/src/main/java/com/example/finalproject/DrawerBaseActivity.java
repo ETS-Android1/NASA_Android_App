@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -28,6 +29,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        //toolbar.inflateMenu(R.menu.main_drawer_menu);
 
         NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
         //must implement onNavigationItemSelected method
@@ -52,12 +54,55 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 startActivity(new Intent(this, BookMarkActivity.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.Share:
+                startActivity(new Intent(this, DashboardActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                overridePendingTransition(0,0);
+                break;
             case R.id.close:
                 finishAffinity();
         }
 
         return false;
     }
+
+    //for toolbar menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_drawer_menu, menu);
+        return true;
+    }
+    //for toolbar icon options
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.news:
+                startActivity(new Intent(this, NewsActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.bookmark:
+                startActivity(new Intent(this, BookMarkActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.Share:
+                startActivity(new Intent(this, DashboardActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.close:
+                finishAffinity();
+        }
+        return true;
+        //return false;
+    }
+
 
     protected void allocateActivityTitle(String titleString) {
         if(getSupportActionBar() !=null) {

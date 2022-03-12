@@ -2,40 +2,51 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:FinalProject="http://schemas.android.com/tools">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/bookmark"
-            android:icon="@drawable/ic_bookmark"
-            android:orderInCategory="3"
-            android:title="Bookmark"
-            android:visible="true"
-            FinalProject:showAsAction="always" />
+  <group
+      android:checkableBehavior="single">
 
         <item android:id="@+id/nav_customers"
             android:icon="@drawable/ic_home"
-            android:title="Home"/>
+            android:title="Home"
+            android:visible="true"
+            app:showAsAction="always"
+            android:orderInCategory="0"/>
 
+      <item android:id="@+id/news"
+          android:icon="@drawable/ic_news"
+          android:title="News"
+          app:showAsAction="always"
+          android:orderInCategory="1"/>
         <item
             android:id="@+id/Share"
             android:icon="@drawable/ic_share"
-            android:orderInCategory="1"
+            android:orderInCategory="2"
             android:title="Share"
             android:visible="true"
-            FinalProject:showAsAction="always" />
+            app:showAsAction="always" />
 
-        <item android:id="@+id/news"
-            android:icon="@drawable/ic_news"
-            android:title="News"/>
+      <item
+          android:id="@+id/bookmark"
+          android:enabled="true"
+          android:icon="@drawable/ic_bookmark"
+          android:orderInCategory="3"
+          android:title="Bookmark"
+          android:visible="true"
+          app:showAsAction="always" />
 
-        <item android:id="@+id/lock"
-            android:icon="@drawable/ic_lock"
-            android:title="Lock"/>
+
+
+<!--        <item android:id="@+id/lock"-->
+<!--            android:icon="@drawable/ic_lock"-->
+<!--            android:title="Lock"-->
+<!--            app:showAsAction="always"-->
+<!--            android:orderInCategory="4"/>-->
 
         <item android:id="@+id/close"
             android:icon="@drawable/ic_close"
-            android:title="Close"/>
-
-
+            android:title="Close"
+            app:showAsAction="always"
+            android:orderInCategory="5"/>
     </group>
 
 </menu>
