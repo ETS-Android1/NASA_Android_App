@@ -5,5 +5,6 @@
     <string name="appAct">Activity Name placeholer</string>
     <string name="newsPage">News Page</string>
     <string name="bookmarkPage">Bookmark Page</string>
-
+    <string name="activityTitle">Welcome</string>
+    <string name="bookmarkActivityTitle">Bookmark Page</string>
 </resources>

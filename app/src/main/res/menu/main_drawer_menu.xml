@@ -4,44 +4,37 @@
     xmlns:FinalProject="http://schemas.android.com/tools">
     <group android:checkableBehavior="single">
         <!-- menuitems for nav drawer and toolbar -->
-        <item android:id="@+id/nav_customers"
-            android:icon="@drawable/ic_home"
+        <item android:id="@+id/helmet"
+            android:icon="@drawable/ic_helmetnasa"
             android:title="Home"
             android:visible="true"
             app:showAsAction="always"
             android:orderInCategory="0"/>
 
-      <item android:id="@+id/news"
-          android:icon="@drawable/ic_news"
-          android:title="News"
+      <item android:id="@+id/search"
+          android:icon="@drawable/ic_binoculars"
+          android:title="Search"
           app:showAsAction="always"
           android:orderInCategory="1"/>
         <item
-            android:id="@+id/Share"
-            android:icon="@drawable/ic_share"
+            android:id="@+id/redplanet"
+            android:icon="@drawable/ic_redplanet"
             android:orderInCategory="2"
-            android:title="Share"
+            android:title="Weather"
             android:visible="true"
             app:showAsAction="always" />
 
       <item
-          android:id="@+id/bookmark"
+          android:id="@+id/rocketship"
           android:enabled="true"
-          android:icon="@drawable/ic_bookmark"
+          android:icon="@drawable/ic_rocketship"
           android:orderInCategory="3"
-          android:title="Bookmark"
+          android:title="Rocket"
           android:visible="true"
           app:showAsAction="always" />
 
-
-<!--        <item android:id="@+id/lock"-->
-<!--            android:icon="@drawable/ic_lock"-->
-<!--            android:title="Lock"-->
-<!--            app:showAsAction="always"-->
-<!--            android:orderInCategory="4"/>-->
-
-        <item android:id="@+id/close"
-            android:icon="@drawable/ic_close"
+        <item android:id="@+id/moon"
+            android:icon="@drawable/ic_moon"
             android:title="Close"
             app:showAsAction="always"
             android:orderInCategory="5"/>

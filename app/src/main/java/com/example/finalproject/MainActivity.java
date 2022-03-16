@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.finalproject.databinding.ActivityMainBinding;
-import com.example.finalproject.databinding.ActivityNewsBinding;
+
 
 public class MainActivity extends DrawerBaseActivity {
     //variable to hold bindings

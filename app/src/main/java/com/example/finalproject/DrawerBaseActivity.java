@@ -49,23 +49,23 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         drawerLayout.closeDrawer(GravityCompat.START);
 
         switch (item.getItemId()) {
-            case R.id.news:
-                startActivity(new Intent(this, NewsActivity.class));
+            case R.id.helmet:
+                startActivity(new Intent(this, EnterDateActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.bookmark:
-                startActivity(new Intent(this, BookMarkActivity.class));
+            case R.id.search:
+                startActivity(new Intent(this, LogInActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.Share:
+            case R.id.redplanet:
                 startActivity(new Intent(this, DashboardActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.home:
+            case R.id.rocketship:
                 startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.close:
+            case R.id.moon:
                 finishAffinity();
         }
 
@@ -83,23 +83,23 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.news:
-                startActivity(new Intent(this, NewsActivity.class));
+            case R.id.helmet:
+                startActivity(new Intent(this, EnterDateActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.bookmark:
-                startActivity(new Intent(this, BookMarkActivity.class));
+            case R.id.search:
+                startActivity(new Intent(this, LogInActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.Share:
+            case R.id.redplanet:
                 startActivity(new Intent(this, DashboardActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.home:
+            case R.id.rocketship:
                 startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.close:
+            case R.id.moon:
                 finishAffinity();
         }
         return true;
