@@ -2,8 +2,10 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +13,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+//import com.squareup.picasso.Picasso;
+import com.example.finalproject.databinding.ActivityShowImageBinding;
 
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,7 +29,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ShowImageActivity extends AppCompatActivity {
+public class ShowImageActivity extends DrawerBaseActivity {
 
     ImageView image;
     TextView selImageTitle;
@@ -34,14 +38,17 @@ public class ShowImageActivity extends AppCompatActivity {
     ProgressBar pb;
     private String imageURL;
 
+    Bitmap imageBitmap;
+
+    ActivityShowImageBinding activityShowImageBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_image);
-
-//        activityDisplayImageBinding = ActivityEnterDateBinding.inflate(getLayoutInflater());
-//        allocateActivityTitle("IOTD Image Display");
-//        setContentView(activityDisplayImageBinding.getRoot());
+       // setContentView(R.layout.activity_show_image);
+        activityShowImageBinding = ActivityShowImageBinding.inflate(getLayoutInflater());
+        allocateActivityTitle("IOTD");
+        setContentView(activityShowImageBinding.getRoot());
 
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();
@@ -54,6 +61,7 @@ public class ShowImageActivity extends AppCompatActivity {
 
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
+
 
         IOTDQuery req = new IOTDQuery();
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
@@ -89,6 +97,12 @@ public class ShowImageActivity extends AppCompatActivity {
                 publishProgress(50);
                 Log.d("ImageDisplayActivity: ", imageURL);
 
+                URL urll = new URL(imageURL);
+                InputStream is = urll.openConnection().getInputStream();
+                imageBitmap = BitmapFactory.decodeStream(is);
+                FileOutputStream outputStream = openFileOutput(imgTitle, Context.MODE_PRIVATE);
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+
 
 
             } catch (Exception e) {
@@ -102,16 +116,19 @@ public class ShowImageActivity extends AppCompatActivity {
         protected void onProgressUpdate(Integer... args) {
             super.onProgressUpdate(args);
             pb.setProgress(args[0]);
+
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //Populate fields; display image using Picasso library
-            Picasso.get().load(imageURL).into(image);
+
+            //Picasso.get().load(imageURL).into(image);
+            image.setImageBitmap(imageBitmap);
             selImageTitle.setText(imgTitle);
-            //Remove progress bar
-            pb.setVisibility(View.INVISIBLE);
+//            //Remove progress bar
+           pb.setVisibility(View.INVISIBLE);
         }
     }
 }
