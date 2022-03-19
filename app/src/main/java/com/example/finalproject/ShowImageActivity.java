@@ -33,10 +33,13 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
     ImageView image;
     TextView selImageTitle;
+    TextView imageDescription;
     String datePassed;
     String imgTitle;
     ProgressBar pb;
     private String imageURL;
+    String HDimageURL;
+    String imageDesc;
 
     Bitmap imageBitmap;
 
@@ -61,6 +64,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
+        imageDescription = findViewById(R.id.imageDescription);
 
 
         IOTDQuery req = new IOTDQuery();
@@ -95,6 +99,10 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 publishProgress(25);
                 imgTitle = imageData.getString("title");
                 publishProgress(50);
+                HDimageURL = imageData.getString("hdurl");
+                publishProgress(60);
+                imageDesc = imageData.getString("explanation");
+                publishProgress(70);
                 Log.d("ImageDisplayActivity: ", imageURL);
 
                 URL urll = new URL(imageURL);
@@ -123,11 +131,11 @@ public class ShowImageActivity extends DrawerBaseActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //Populate fields; display image using Picasso library
-
             //Picasso.get().load(imageURL).into(image);
             image.setImageBitmap(imageBitmap);
             selImageTitle.setText(imgTitle);
-//            //Remove progress bar
+            imageDescription.setText(imageDesc);
+            //Remove progress bar
            pb.setVisibility(View.INVISIBLE);
         }
     }
