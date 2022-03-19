@@ -7,4 +7,6 @@
     <string name="bookmarkPage">Bookmark Page</string>
     <string name="activityTitle">Welcome</string>
     <string name="bookmarkActivityTitle">Bookmark Page</string>
+    <string name="open">open</string>
+    <string name="close">closed</string>
 </resources>
