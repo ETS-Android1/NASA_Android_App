@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".DrawerBaseActivity"
     tools:openDrawer="start"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout">
     <!-- drawer layout -->
     <include layout="@layout/content_layout"
         android:layout_height="match_parent"
