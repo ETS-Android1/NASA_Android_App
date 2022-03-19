@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -69,6 +70,12 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
         IOTDQuery req = new IOTDQuery();
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
+
+
+
+
+
+
     }
 
     class IOTDQuery extends AsyncTask<String, Integer, String> {
@@ -137,6 +144,20 @@ public class ShowImageActivity extends DrawerBaseActivity {
             imageDescription.setText(imageDesc);
             //Remove progress bar
            pb.setVisibility(View.INVISIBLE);
+
+            //button to initiate save image to database
+            Button saveImageButton = findViewById(R.id.saveImage);
+            saveImageButton.setOnClickListener(click -> {
+
+                Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
+
+                sendImageInformation.putExtra("Title", imgTitle);
+
+                startActivity(sendImageInformation);
+
+            });
+
+
         }
     }
 }
