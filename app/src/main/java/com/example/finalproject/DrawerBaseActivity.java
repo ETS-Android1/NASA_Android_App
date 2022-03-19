@@ -59,7 +59,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:
-                startActivity(new Intent(this, DashboardActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
@@ -93,7 +93,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:
-                startActivity(new Intent(this, DashboardActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
