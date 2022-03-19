@@ -6,6 +6,13 @@ public class DBImage {
     protected long ID;
 
     //constructor
+    public DBImage(String t, String u, long i) {
+        title = t;
+        url = u;
+        ID = i;
+    }
+
+    //constructor
     public DBImage(String t, String u, String hd, long i) {
         title = t;
         url = u;

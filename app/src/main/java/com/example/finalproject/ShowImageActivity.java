@@ -152,6 +152,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
 
                 sendImageInformation.putExtra("Title", imgTitle);
+                sendImageInformation.putExtra("url", imageURL);
 
                 startActivity(sendImageInformation);
 
