@@ -7,15 +7,15 @@
     android:background="@color/black"
     tools:context=".ShowImageActivity">
 
-    <com.jgabrielfreitas.core.BlurImageView
-        android:id="@+id/showImageBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.5"
-        android:scaleType="centerCrop"
-        app:radius="24">
+<!--    <com.jgabrielfreitas.core.BlurImageView-->
+<!--        android:id="@+id/showImageBackground"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:alpha="0.5"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:radius="24">-->
 
-    </com.jgabrielfreitas.core.BlurImageView>
+<!--    </com.jgabrielfreitas.core.BlurImageView>-->
 
     <ScrollView
         android:layout_width="match_parent"
