@@ -29,7 +29,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-//import com.squareup.picasso.Picasso;
 
 public class ShowImageActivity extends DrawerBaseActivity {
 
@@ -155,8 +154,6 @@ public class ShowImageActivity extends DrawerBaseActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //Populate fields; display image using Picasso library
-            //Picasso.get().load(imageURL).into(image);
             image.setImageBitmap(imageBitmap);
             bgImage.setImageBitmap(imageBitmap);
             bgImage.setBlur(20);
