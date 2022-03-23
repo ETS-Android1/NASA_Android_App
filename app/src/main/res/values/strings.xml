@@ -9,4 +9,5 @@
     <string name="bookmarkActivityTitle">Bookmark Page</string>
     <string name="open">open</string>
     <string name="close">closed</string>
+    <string name="hd_url_link">Click here to see HD Image</string>
 </resources>

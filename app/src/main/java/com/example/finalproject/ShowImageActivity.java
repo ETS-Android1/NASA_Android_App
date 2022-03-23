@@ -1,40 +1,45 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-//import com.squareup.picasso.Picasso;
-import com.example.finalproject.databinding.ActivityShowImageBinding;
 
+import androidx.cardview.widget.CardView;
+
+import com.example.finalproject.databinding.ActivityShowImageBinding;
+import com.jgabrielfreitas.core.BlurImageView;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+
+//import com.squareup.picasso.Picasso;
 
 public class ShowImageActivity extends DrawerBaseActivity {
 
     ImageView image;
+    BlurImageView bgImage;
+    CardView imageDisplayCardView;
     TextView selImageTitle;
     TextView imageDescription;
+    TextView hdURL;
+    TextView dateDisplay;
     String datePassed;
     String imgTitle;
     ProgressBar pb;
@@ -49,7 +54,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_show_image);
+        // setContentView(R.layout.activity_show_image);
         activityShowImageBinding = ActivityShowImageBinding.inflate(getLayoutInflater());
         allocateActivityTitle("IOTD");
         setContentView(activityShowImageBinding.getRoot());
@@ -65,16 +70,30 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
+        bgImage = findViewById(R.id.showImageBackground);
         imageDescription = findViewById(R.id.imageDescription);
+        hdURL = findViewById(R.id.hdLink);
+        dateDisplay = findViewById(R.id.dateDisplay);
+
+        imageDisplayCardView = findViewById(R.id.imageDisplayCardView);
+        imageDisplayCardView.setVisibility(View.INVISIBLE);
 
 
         IOTDQuery req = new IOTDQuery();
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
 
+        //button to initiate save image to database
+        Button saveImageButton = findViewById(R.id.saveImage);
+        saveImageButton.setOnClickListener(click -> {
 
+            Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
 
+            sendImageInformation.putExtra("Title", imgTitle);
+            sendImageInformation.putExtra("url", imageURL);
 
+            startActivity(sendImageInformation);
 
+        });
 
     }
 
@@ -116,8 +135,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 InputStream is = urll.openConnection().getInputStream();
                 imageBitmap = BitmapFactory.decodeStream(is);
                 FileOutputStream outputStream = openFileOutput(imgTitle, Context.MODE_PRIVATE);
-                imageBitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
-
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 
 
             } catch (Exception e) {
@@ -140,23 +158,22 @@ public class ShowImageActivity extends DrawerBaseActivity {
             //Populate fields; display image using Picasso library
             //Picasso.get().load(imageURL).into(image);
             image.setImageBitmap(imageBitmap);
+            bgImage.setImageBitmap(imageBitmap);
+            bgImage.setBlur(20);
             selImageTitle.setText(imgTitle);
             imageDescription.setText(imageDesc);
+            dateDisplay.setText(datePassed);
+
+            hdURL.setClickable(true);
+            hdURL.setMovementMethod(LinkMovementMethod.getInstance());
+            String urlReference = "<a href='" + HDimageURL + "'> " + getResources().getString(R.string.hd_url_link) + " </a>";
+            hdURL.setText(Html.fromHtml(urlReference));
+
+            //show CardView once everything loads
+            imageDisplayCardView.setVisibility(View.VISIBLE);
+
             //Remove progress bar
-           pb.setVisibility(View.INVISIBLE);
-
-            //button to initiate save image to database
-            Button saveImageButton = findViewById(R.id.saveImage);
-            saveImageButton.setOnClickListener(click -> {
-
-                Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
-
-                sendImageInformation.putExtra("Title", imgTitle);
-                sendImageInformation.putExtra("url", imageURL);
-
-                startActivity(sendImageInformation);
-
-            });
+            pb.setVisibility(View.INVISIBLE);
 
 
         }
