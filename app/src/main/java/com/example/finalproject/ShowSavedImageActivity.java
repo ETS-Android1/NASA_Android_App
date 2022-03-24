@@ -51,7 +51,9 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         myAdapter = new MyOwnAdapter();
         theList.setAdapter(myAdapter);
 
+        //if a list item is clicked
         theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
+            //show text box with option to delete
             showImage( position );
         });
 
@@ -63,27 +65,31 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         imageHDurl = receivedImageTitle.getStringExtra("hdurl");
         imageDesc = receivedImageTitle.getStringExtra("desc");
 
+
         //add to database
         ContentValues newRowValues = new ContentValues();
+        //add logic to only create new DB entry if received parameters from previous activity
+        if (imageTitle != null) {
+            //get image information from last activity and create row values
+            newRowValues.put(DBOpener.COL_IMAGE_TITLE, imageTitle);
+            newRowValues.put(DBOpener.COL_IMAGE_URL, imageURL);
+            newRowValues.put(DBOpener.COL_IMAGE_HDURL, imageHDurl);
+            newRowValues.put(DBOpener.COL_IMAGE_DESC, imageDesc);
+            //insert row values into DB and create ID number
+            long newId = db.insert(DBOpener.TABLE_NAME, null, newRowValues);
+            //create new Image Object
+            DBImage newImage = new DBImage(imageTitle, imageURL, newId);
+            //add image object to list
+            imageList.add(newImage);
 
-        newRowValues.put(DBOpener.COL_IMAGE_TITLE, imageTitle);
-        newRowValues.put(DBOpener.COL_IMAGE_URL, imageURL);
-        newRowValues.put(DBOpener.COL_IMAGE_HDURL, imageHDurl );
-        newRowValues.put(DBOpener.COL_IMAGE_DESC, imageDesc);
-
-        //insert into DB
-        long newId = db.insert(DBOpener.TABLE_NAME,null,newRowValues);
-        //create new Image Object
-        DBImage newImage = new DBImage(imageTitle, imageURL, newId);
-
-        imageList.add(newImage);
-
+            Toast.makeText(this, "New Image saved ID: "+newId, Toast.LENGTH_LONG).show();
+        }
         myAdapter.notifyDataSetChanged();
 
-        Toast.makeText(this, "New Image saved ID: "+newId, Toast.LENGTH_LONG).show();
+
 
     }
-
+    //function to show text box pop up with option to delete image from DB
     private void showImage(int position) {
         DBImage selectedImage = imageList.get(position);
         View image_view = getLayoutInflater().inflate(R.layout.image_delete, null);
