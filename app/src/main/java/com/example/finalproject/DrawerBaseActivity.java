@@ -51,11 +51,12 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         switch (item.getItemId()) {
             case R.id.helmet:
-                startActivity(new Intent(this, EnterDateActivity.class));
+                startActivity(new Intent(this, LogInActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.search:
-                startActivity(new Intent(this, LogInActivity.class));
+
+                startActivity(new Intent(this, EnterDateActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:
@@ -85,11 +86,12 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.helmet:
-                startActivity(new Intent(this, EnterDateActivity.class));
+                startActivity(new Intent(this, LogInActivity.class));
+
                 overridePendingTransition(0,0);
                 break;
             case R.id.search:
-                startActivity(new Intent(this, LogInActivity.class));
+                startActivity(new Intent(this, EnterDateActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:

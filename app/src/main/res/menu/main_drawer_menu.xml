@@ -6,36 +6,38 @@
         <!-- menuitems for nav drawer and toolbar -->
         <item android:id="@+id/helmet"
             android:icon="@drawable/ic_helmetnasa"
-            android:title="Home"
+            android:title="@string/homeMenu"
             android:visible="true"
             app:showAsAction="always"
             android:orderInCategory="0"/>
 
       <item android:id="@+id/search"
           android:icon="@drawable/ic_binoculars"
-          android:title="Search"
+          android:title="@string/searchMenu"
           app:showAsAction="always"
           android:orderInCategory="1"/>
-        <item
-            android:id="@+id/redplanet"
-            android:icon="@drawable/ic_redplanet"
-            android:orderInCategory="2"
-            android:title="Weather"
-            android:visible="true"
-            app:showAsAction="always" />
+
 
       <item
-          android:id="@+id/rocketship"
+          android:id="@+id/redplanet"
           android:enabled="true"
-          android:icon="@drawable/ic_rocketship"
-          android:orderInCategory="3"
-          android:title="Rocket"
+          android:icon="@drawable/ic_redplanet"
+          android:orderInCategory="2"
+          android:title="@string/marsWeather"
           android:visible="true"
           app:showAsAction="always" />
 
+        <item
+            android:id="@+id/rocketship"
+            android:icon="@drawable/ic_rocketship"
+            android:orderInCategory="3"
+            android:title="@string/myImages"
+            android:visible="true"
+            app:showAsAction="always" />
+
         <item android:id="@+id/moon"
             android:icon="@drawable/ic_moon"
-            android:title="Close"
+            android:title="@string/exit"
             app:showAsAction="always"
             android:orderInCategory="5"/>
     </group>
