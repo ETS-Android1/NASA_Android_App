@@ -4,7 +4,7 @@
     <string name="menu_drawer_closed">Closed</string>
     <string name="appAct">Activity Name placeholer</string>
     <string name="newsPage">News Page</string>
-    <string name="logInPage">LogIn Page</string>
+    <string name="logInPage">Please enter your name</string>
     <string name="activityTitle">Welcome</string>
     <string name="bookmarkActivityTitle">Bookmark Page</string>
     <string name="open">open</string>
@@ -15,4 +15,7 @@
     <string name="homeMenu">Home</string>
     <string name="marsWeather">Mars Weather</string>
     <string name="exit">Exit</string>
+    <string name="enterNameButton">Submit</string>
+    <string name="enterName">Beam me up Scotty?</string>
+
 </resources>

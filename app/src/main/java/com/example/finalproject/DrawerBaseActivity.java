@@ -55,16 +55,15 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 overridePendingTransition(0,0);
                 break;
             case R.id.search:
-
                 startActivity(new Intent(this, EnterDateActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:
-                startActivity(new Intent(this, ShowSavedImageActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.moon:
@@ -87,7 +86,6 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         switch (item.getItemId()) {
             case R.id.helmet:
                 startActivity(new Intent(this, LogInActivity.class));
-
                 overridePendingTransition(0,0);
                 break;
             case R.id.search:
@@ -95,11 +93,11 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 overridePendingTransition(0,0);
                 break;
             case R.id.redplanet:
-                startActivity(new Intent(this, ShowSavedImageActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.moon:

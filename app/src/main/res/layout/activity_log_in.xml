@@ -7,14 +7,35 @@
     tools:context=".LogInActivity">
 
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
         android:id="@+id/bookmarkPage"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="176dp"
         android:text="@string/logInPage"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/enterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/enterNameButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookmarkPage" />
+
+    <Button
+        android:id="@+id/enterNameButton"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:text="@string/enterNameButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
