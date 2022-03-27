@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.example.finalproject.databinding.ActivityShowImageBinding;
+import com.google.android.material.navigation.NavigationView;
 //import com.jgabrielfreitas.core.BlurImageView;
 
 import org.json.JSONObject;
@@ -57,6 +58,10 @@ public class ShowImageActivity extends DrawerBaseActivity {
         activityShowImageBinding = ActivityShowImageBinding.inflate(getLayoutInflater());
         allocateActivityTitle("IOTD");
         setContentView(activityShowImageBinding.getRoot());
+        //set title of nav drawer to activity name
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headView = navigationView.getHeaderView(0);
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText("View Image");
 
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();

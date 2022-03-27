@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.databinding.ActivityShowImageBinding;
 import com.example.finalproject.databinding.ActivityShowSavedImageBinding;
+import com.google.android.material.navigation.NavigationView;
 
 import org.w3c.dom.Text;
 
@@ -42,6 +44,11 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         activityShowSavedImageBinding = ActivityShowSavedImageBinding.inflate(getLayoutInflater());
         allocateActivityTitle("Saved Images");
         setContentView(activityShowSavedImageBinding.getRoot());
+        //set title of nav drawer to activity name
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headView = navigationView.getHeaderView(0);
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Saved Images");
+
         //setContentView(R.layout.activity_show_saved_image);
         ListView theList = (ListView)findViewById(R.id.the_list);
         //load previous images

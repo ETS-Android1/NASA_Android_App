@@ -39,7 +39,8 @@
             android:icon="@drawable/ic_moon"
             android:title="@string/exit"
             app:showAsAction="always"
-            android:orderInCategory="5"/>
+            android:orderInCategory="5"
+            />
     </group>
 
 </menu>
