@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
+            android:name=".MarsWeatherActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowSavedImageActivity"
             android:exported="false" />
         <activity

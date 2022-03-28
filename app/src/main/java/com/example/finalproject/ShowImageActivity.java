@@ -19,7 +19,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.finalproject.databinding.ActivityShowImageBinding;
 import com.google.android.material.navigation.NavigationView;
-//import com.jgabrielfreitas.core.BlurImageView;
+import com.jgabrielfreitas.core.BlurImageView;
 
 import org.json.JSONObject;
 
@@ -34,7 +34,7 @@ import java.net.URL;
 public class ShowImageActivity extends DrawerBaseActivity {
 
     ImageView image;
-    //BlurImageView bgImage;
+    BlurImageView bgImage;
     CardView imageDisplayCardView;
     TextView selImageTitle;
     TextView imageDescription;
@@ -74,7 +74,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
-        //bgImage = findViewById(R.id.showImageBackground);
+        bgImage = findViewById(R.id.showImageBackground);
         imageDescription = findViewById(R.id.imageDescription);
         hdURL = findViewById(R.id.hdLink);
         dateDisplay = findViewById(R.id.dateDisplay);
@@ -160,8 +160,8 @@ public class ShowImageActivity extends DrawerBaseActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             image.setImageBitmap(imageBitmap);
-            //bgImage.setImageBitmap(imageBitmap);
-            //bgImage.setBlur(20);
+            bgImage.setImageBitmap(imageBitmap);
+            bgImage.setBlur(20);
             selImageTitle.setText(imgTitle);
             imageDescription.setText(imageDesc);
             dateDisplay.setText(datePassed);
