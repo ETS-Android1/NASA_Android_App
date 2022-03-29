@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 
 import com.example.finalproject.databinding.ActivityShowImageBinding;
@@ -29,6 +33,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 
 public class ShowImageActivity extends DrawerBaseActivity {
@@ -46,11 +53,14 @@ public class ShowImageActivity extends DrawerBaseActivity {
     private String imageURL;
     String HDimageURL;
     String imageDesc;
+    String formattedDate;
+    Animation fadeInCardView;
 
     Bitmap imageBitmap;
 
     ActivityShowImageBinding activityShowImageBinding;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +78,18 @@ public class ShowImageActivity extends DrawerBaseActivity {
         datePassed = receivedDate.getStringExtra("Date");
         Log.d("DatePickerPassedDate: ", datePassed);
 
+        //Convert date formatting for display
+        LocalDate date = LocalDate.parse(datePassed, DateTimeFormatter.ofPattern("yyyy-M-dd"));
+        formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
+        Log.d("Date", String.valueOf(date));
+        Log.d("Date", String.valueOf(formattedDate));
+
+        //Initialize progress bar, set progress and visibility
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(View.VISIBLE);
         pb.setProgress(0);
 
+        //Initiate display components
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
         bgImage = findViewById(R.id.showImageBackground);
@@ -82,7 +100,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
         imageDisplayCardView = findViewById(R.id.imageDisplayCardView);
         imageDisplayCardView.setVisibility(View.INVISIBLE);
 
-
+        //Call API Query
         IOTDQuery req = new IOTDQuery();
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
 
@@ -159,12 +177,16 @@ public class ShowImageActivity extends DrawerBaseActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            //Return API information for setting to display
             image.setImageBitmap(imageBitmap);
-            bgImage.setImageBitmap(imageBitmap);
-            bgImage.setBlur(20);
             selImageTitle.setText(imgTitle);
             imageDescription.setText(imageDesc);
-            dateDisplay.setText(datePassed);
+            dateDisplay.setText(formattedDate);
+
+            //Set Background image dynamically, blur
+            bgImage.setImageBitmap(imageBitmap);
+            bgImage.setBlur(20);
+
             //allow user option to click to see HD image
             hdURL.setClickable(true);
             hdURL.setMovementMethod(LinkMovementMethod.getInstance());
@@ -173,6 +195,8 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
             //show CardView once everything loads
             imageDisplayCardView.setVisibility(View.VISIBLE);
+            fadeInCardView = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+            imageDisplayCardView.startAnimation(fadeInCardView);
 
             //Remove progress bar
             pb.setVisibility(View.INVISIBLE);
