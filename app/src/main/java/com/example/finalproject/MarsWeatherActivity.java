@@ -1,9 +1,13 @@
 package com.example.finalproject;
 
+import android.animation.ValueAnimator;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -24,30 +28,48 @@ import java.util.Locale;
 
 public class MarsWeatherActivity extends AppCompatActivity {
 
+    TextView actTitle;
     TextView currentSol;
     TextView tempHigh;
     TextView tempLow;
     TextView currentDate;
     MaterialCardView weatherDisplayCardView;
     String weatherSol, weatherTempHigh, weatherTempLow, formattedDate;
+    Animation fadeInTitle, fadeInCardView;
 
+    //ActivityMarsWeatherBindingBinding activityMarsWeatherBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mars_weather);
+
+//        activityMarsWeatherBinding = activityMarsWeatherBinding.inflate(getLayoutInflater());
+//        allocateActivityTitle("Mars Weather");
+//        setContentView(activityMarsWeatherBinding.getRoot());
 
         //set title of nav drawer to activity name
 //        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //        View headView = navigationView.getHeaderView(0);
 //        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Mars Weather");
 
+        actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);
         tempHigh = findViewById(R.id.tempHighDisplay);
         tempLow = findViewById(R.id.tempLowDisplay);
         currentDate = findViewById(R.id.currentDateDisplay);
         weatherDisplayCardView = findViewById(R.id.weatherCardView);
 
+        //Set initial visibility of CardView to invisible while it loads in
+        weatherDisplayCardView.setVisibility(View.INVISIBLE);
+
+        //Animate Title
+        fadeInTitle = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+        actTitle.startAnimation(fadeInTitle);
+
+
+        //Run MarsWeatherQuery; connect with API
         MarsWeatherQuery req = new MarsWeatherQuery();
         req.execute("https://api.maas2.apollorion.com/");
 
@@ -59,6 +81,7 @@ public class MarsWeatherActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... args) {
             try {
+                //Establish Connection
                 URL url = new URL(args[0]);
 
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -72,14 +95,18 @@ public class MarsWeatherActivity extends AppCompatActivity {
                 while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
+
+                //Parse results, create JSONObject
                 String result = sb.toString();
                 JSONObject weatherData = new JSONObject(result);
 
+                //Get data from API
                 weatherSol = weatherData.getString("sol");
                 weatherTempHigh = weatherData.getString("max_temp");
                 weatherTempLow = weatherData.getString("min_temp");
                 String tempString = weatherData.getString("terrestrial_date");
 
+                //Date conversion logic
                 LocalDateTime date = LocalDateTime.parse(tempString, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
                 formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
                 Log.d("Date", String.valueOf(date));
@@ -103,12 +130,30 @@ public class MarsWeatherActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            currentSol.setText(weatherSol);
+
+            //set text fetched from API to TextViews
             tempHigh.setText(weatherTempHigh + "\u2103");
             tempLow.setText(weatherTempLow + "\u2103");
-
             currentDate.setText(formattedDate);
+
+            //Animate Sol Date number
+            startCountAnimation(weatherSol, currentSol);
+
+            //Once all information loads, make CardView visible and fade in
+            weatherDisplayCardView.setVisibility(View.VISIBLE);
+            fadeInCardView = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+            fadeInCardView.setStartOffset(500);
+            weatherDisplayCardView.startAnimation(fadeInCardView);
         }
+    }
+
+    private void startCountAnimation(String curNum, TextView updatingView) {
+
+        Integer num = Integer.parseInt(curNum);
+        ValueAnimator animator = ValueAnimator.ofInt(num - 20, num);
+        animator.setDuration(2500);
+        animator.addUpdateListener(animation -> updatingView.setText(animation.getAnimatedValue().toString()));
+        animator.start();
     }
 
 
