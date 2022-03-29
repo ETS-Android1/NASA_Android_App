@@ -76,10 +76,10 @@ public class ShowImageActivity extends DrawerBaseActivity {
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();
         datePassed = receivedDate.getStringExtra("Date");
-        Log.d("DatePickerPassedDate: ", datePassed);
+        Log.d("DatePickerPassedDate", datePassed);
 
         //Convert date formatting for display
-        LocalDate date = LocalDate.parse(datePassed, DateTimeFormatter.ofPattern("yyyy-M-dd"));
+        LocalDate date = LocalDate.parse(datePassed, DateTimeFormatter.ofPattern("yyyy-M-d"));
         formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
         Log.d("Date", String.valueOf(date));
         Log.d("Date", String.valueOf(formattedDate));
