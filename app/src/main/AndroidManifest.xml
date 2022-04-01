@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
+            android:name=".EmptyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsFragment"
+            android:exported="false" />
+        <activity
             android:name=".MarsWeatherActivity"
             android:exported="false" />
         <activity

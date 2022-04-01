@@ -34,6 +34,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
     ArrayList<DBImage> imageList = new ArrayList<>();
     private static int ACTIVITY_VIEW_IMAGE = 33;
+
     MyOwnAdapter myAdapter;
     SQLiteDatabase db;
 
@@ -62,7 +63,31 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         //if a list item is clicked
         theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
             //show text box with option to delete
-            showImage( position );
+            //showImage( position );
+
+            //for bundle to fragment
+            Bundle dataToPass = new Bundle();
+
+            String imageTitle = imageList.get( position).getTitle();
+            String imageDate = imageList.get( position ).getDate();
+            String imageDescription = imageList.get( position ).getDescription();
+            String imageHDurl = imageList.get( position ).getHDurl();
+            String imageUrl = imageList.get( position ).getUrl();
+
+            dataToPass.putString("imageTitle", imageTitle);
+            dataToPass.putString("imageDate", imageDate);
+            dataToPass.putString("imageDescription", imageDescription);
+            dataToPass.putString("imageHDurl", imageHDurl);
+            dataToPass.putString("imageUrl", imageUrl);
+
+            //activity to open fragment
+            Intent nextActivity = new Intent(ShowSavedImageActivity.this, EmptyActivity.class);
+            //put selected image information in that opened fragment
+            nextActivity.putExtras(dataToPass);
+            //start activity
+            startActivity(nextActivity);
+
+
         });
 
         //Receive date from DatePicker in previous Activity
@@ -70,8 +95,8 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         //datePassed = receivedDate.getStringExtra("Date");
         imageTitle = receivedImageTitle.getStringExtra("Title");
         imageURL = receivedImageTitle.getStringExtra("url");
-        imageHDurl = receivedImageTitle.getStringExtra("hdurl");
-        imageDesc = receivedImageTitle.getStringExtra("desc");
+        imageHDurl = receivedImageTitle.getStringExtra("HDurl");
+        imageDesc = receivedImageTitle.getStringExtra("explanation");
         imageDate = receivedImageTitle.getStringExtra("date");
 
 
@@ -88,7 +113,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             //insert row values into DB and create ID number
             long newId = db.insert(DBOpener.TABLE_NAME, null, newRowValues);
             //create new Image Object
-            DBImage newImage = new DBImage(imageTitle, imageURL, newId, imageDate);
+            DBImage newImage = new DBImage(imageTitle, imageURL, imageHDurl, newId, imageDate, imageDesc);
             //add image object to list
             imageList.add(newImage);
 
@@ -149,10 +174,12 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         {
             String title = results.getString(titleColumnIndex);
             String url = results.getString(urlColumnIndex);
+            String HDurl = results.getString(HDurlColumnIndex);
             long id = results.getLong(idColIndex);
             String date = results.getString(dateColumnIndex);
+            String desc = results.getString(descColumnIndex);
 
-            imageList.add(new DBImage(title, url, id, date));
+            imageList.add(new DBImage(title, url, HDurl, id, date, desc));
         }
     }
     protected class MyOwnAdapter extends BaseAdapter {
