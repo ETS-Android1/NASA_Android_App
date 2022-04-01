@@ -1,74 +1,122 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-//import com.squareup.picasso.Picasso;
-import com.example.finalproject.databinding.ActivityShowImageBinding;
 
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+
+import com.example.finalproject.databinding.ActivityShowImageBinding;
+import com.google.android.material.navigation.NavigationView;
+import com.jgabrielfreitas.core.BlurImageView;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 
 public class ShowImageActivity extends DrawerBaseActivity {
 
     ImageView image;
+    BlurImageView bgImage;
+    CardView imageDisplayCardView;
     TextView selImageTitle;
     TextView imageDescription;
+    TextView hdURL;
+    TextView dateDisplay;
     String datePassed;
     String imgTitle;
     ProgressBar pb;
     private String imageURL;
     String HDimageURL;
     String imageDesc;
+    String formattedDate;
+    Animation fadeInCardView;
 
     Bitmap imageBitmap;
 
     ActivityShowImageBinding activityShowImageBinding;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_show_image);
+        // setContentView(R.layout.activity_show_image);
         activityShowImageBinding = ActivityShowImageBinding.inflate(getLayoutInflater());
         allocateActivityTitle("IOTD");
         setContentView(activityShowImageBinding.getRoot());
+        //set title of nav drawer to activity name
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headView = navigationView.getHeaderView(0);
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText("View Image");
 
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();
         datePassed = receivedDate.getStringExtra("Date");
-        Log.d("DatePickerPassedDate: ", datePassed);
+        Log.d("DatePickerPassedDate", datePassed);
 
+        //Convert date formatting for display
+        LocalDate date = LocalDate.parse(datePassed, DateTimeFormatter.ofPattern("yyyy-M-d"));
+        formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
+        Log.d("Date", String.valueOf(date));
+        Log.d("Date", String.valueOf(formattedDate));
+
+        //Initialize progress bar, set progress and visibility
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(View.VISIBLE);
         pb.setProgress(0);
 
+        //Initiate display components
         selImageTitle = findViewById(R.id.imageTitle);
         image = findViewById(R.id.iotdImageDisplay);
+        bgImage = findViewById(R.id.showImageBackground);
         imageDescription = findViewById(R.id.imageDescription);
+        hdURL = findViewById(R.id.hdLink);
+        dateDisplay = findViewById(R.id.dateDisplay);
 
+        imageDisplayCardView = findViewById(R.id.imageDisplayCardView);
+        imageDisplayCardView.setVisibility(View.INVISIBLE);
 
+        //Call API Query
         IOTDQuery req = new IOTDQuery();
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
+
+        //button to initiate save image to database
+        Button saveImageButton = findViewById(R.id.saveImage);
+        saveImageButton.setOnClickListener(click -> {
+
+            Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
+
+            sendImageInformation.putExtra("Title", imgTitle);
+            sendImageInformation.putExtra("url", imageURL);
+
+            startActivity(sendImageInformation);
+
+        });
+
     }
 
     class IOTDQuery extends AsyncTask<String, Integer, String> {
@@ -109,8 +157,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 InputStream is = urll.openConnection().getInputStream();
                 imageBitmap = BitmapFactory.decodeStream(is);
                 FileOutputStream outputStream = openFileOutput(imgTitle, Context.MODE_PRIVATE);
-                imageBitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
-
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 
 
             } catch (Exception e) {
@@ -130,13 +177,31 @@ public class ShowImageActivity extends DrawerBaseActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //Populate fields; display image using Picasso library
-            //Picasso.get().load(imageURL).into(image);
+            //Return API information for setting to display
             image.setImageBitmap(imageBitmap);
             selImageTitle.setText(imgTitle);
             imageDescription.setText(imageDesc);
+            dateDisplay.setText(formattedDate);
+
+            //Set Background image dynamically, blur
+            bgImage.setImageBitmap(imageBitmap);
+            bgImage.setBlur(20);
+
+            //allow user option to click to see HD image
+            hdURL.setClickable(true);
+            hdURL.setMovementMethod(LinkMovementMethod.getInstance());
+            String urlReference = "<a href='" + HDimageURL + "'> " + getResources().getString(R.string.hd_url_link) + " </a>";
+            hdURL.setText(Html.fromHtml(urlReference));
+
+            //show CardView once everything loads
+            imageDisplayCardView.setVisibility(View.VISIBLE);
+            fadeInCardView = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+            imageDisplayCardView.startAnimation(fadeInCardView);
+
             //Remove progress bar
-           pb.setVisibility(View.INVISIBLE);
+            pb.setVisibility(View.INVISIBLE);
+
+
         }
     }
 }

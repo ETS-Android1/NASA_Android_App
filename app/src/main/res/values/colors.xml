@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellowOrange">#ffa500</color>
     <color name="blueComplement">#005aff</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

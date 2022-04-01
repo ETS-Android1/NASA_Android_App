@@ -1,19 +1,17 @@
 package com.example.finalproject;
 
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -51,19 +49,19 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         switch (item.getItemId()) {
             case R.id.helmet:
-                startActivity(new Intent(this, EnterDateActivity.class));
-                overridePendingTransition(0,0);
-                break;
-            case R.id.search:
                 startActivity(new Intent(this, LogInActivity.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.search:
+                startActivity(new Intent(this, EnterDateActivity.class));
+                overridePendingTransition(0,0);
+                break;
             case R.id.redplanet:
-                startActivity(new Intent(this, DashboardActivity.class));
+                startActivity(new Intent(this, MarsWeatherActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.moon:
@@ -85,19 +83,19 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.helmet:
-                startActivity(new Intent(this, EnterDateActivity.class));
-                overridePendingTransition(0,0);
-                break;
-            case R.id.search:
                 startActivity(new Intent(this, LogInActivity.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.search:
+                startActivity(new Intent(this, EnterDateActivity.class));
+                overridePendingTransition(0,0);
+                break;
             case R.id.redplanet:
-                startActivity(new Intent(this, DashboardActivity.class));
+                startActivity(new Intent(this, MarsWeatherActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.rocketship:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.moon:

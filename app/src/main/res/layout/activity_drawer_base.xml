@@ -21,5 +21,6 @@
         android:id="@+id/nav_view"
         app:headerLayout="@layout/main_drawer_header"
         app:menu="@menu/main_drawer_menu"
+        app:itemIconTint="@color/blueComplement"
         />
 </androidx.drawerlayout.widget.DrawerLayout>
