@@ -49,8 +49,8 @@ public class DetailsFragment extends Fragment {
         TextView imageHDurl = (TextView)result.findViewById(R.id.fragmentImageHDurl);
         imageHDurl.setText("HD URL: " +imageHDurlText);
 
-        TextView imageUrl = (TextView)result.findViewById(R.id.fragmentImageUrl);
-        imageUrl.setText("URL: " +imageURLText);
+        //TextView imageUrl = (TextView)result.findViewById(R.id.fragmentImageUrl);
+        //imageUrl.setText("URL: " +imageURLText);
 
         return result;
 

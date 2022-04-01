@@ -18,30 +18,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/fragmentImageTitle"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/fragmentImageDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageDescription"
         android:layout_below="@id/fragmentImageDate"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragmentImageUrl"
-        android:layout_below="@id/fragmentImageDescription"
+        android:layout_below="@id/fragmentImageHDurl"
         android:textSize="20dp"
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/fragmentImageHDurl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageHDurl"
-        android:layout_below="@id/fragmentImageUrl"
+        android:layout_below="@id/fragmentImageDescription"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>

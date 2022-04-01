@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/fragmentImageUrl"
         android:layout_below="@id/fragmentImageDescription"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"/>
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/fragmentImageHDurl"
         android:layout_below="@id/fragmentImageUrl"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"/>
 
 </RelativeLayout>

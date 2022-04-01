@@ -90,9 +90,8 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
         });
 
-        //Receive date from DatePicker in previous Activity
+        //Receive data from show image activity of image user wants to save
         Intent receivedImageTitle = getIntent();
-        //datePassed = receivedDate.getStringExtra("Date");
         imageTitle = receivedImageTitle.getStringExtra("Title");
         imageURL = receivedImageTitle.getStringExtra("url");
         imageHDurl = receivedImageTitle.getStringExtra("HDurl");
