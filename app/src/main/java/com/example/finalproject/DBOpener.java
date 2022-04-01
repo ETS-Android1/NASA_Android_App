@@ -7,12 +7,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBOpener extends SQLiteOpenHelper {
 
     protected final static String DATABASE_NAME = "SAVED_IMAGES";
-    protected final static int VERSION_NUM = 1;
+    protected final static int VERSION_NUM = 2;
     public final static String TABLE_NAME = "IMAGES";
     public final static String COL_IMAGE_TITLE = "TITLE";
     public final static String COL_IMAGE_URL = "URL";
     public final static String COL_IMAGE_HDURL = "HDURL";
     public final static String COL_IMAGE_DESC = "DESCRIPTION";
+    public final static String COL_IMAGE_DATE = "DATE";
     public final static String COL_ID = "ID";
 
     public DBOpener(Context ctx) { super(ctx, DATABASE_NAME, null, VERSION_NUM);}
@@ -21,6 +22,7 @@ public class DBOpener extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_IMAGE_TITLE + " text,"
+                + COL_IMAGE_DATE + " text, "
                 + COL_IMAGE_DESC + " text,"
                 + COL_IMAGE_HDURL + " text,"
                 + COL_IMAGE_URL + " text);");

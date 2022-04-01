@@ -8,14 +8,14 @@
         android:id="@+id/rowTitle"/>
     <TextView
         android:layout_below="@id/rowTitle"
-        android:id="@+id/rowURL"
+        android:id="@+id/rowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
-        android:layout_below="@id/rowURL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/row_id"/>
+<!--    <TextView-->
+<!--        android:layout_below="@id/rowDate"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:id="@+id/row_id"/>-->
 
 </RelativeLayout>

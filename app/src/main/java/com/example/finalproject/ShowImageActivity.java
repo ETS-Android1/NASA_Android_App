@@ -112,6 +112,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
             sendImageInformation.putExtra("Title", imgTitle);
             sendImageInformation.putExtra("url", imageURL);
+            sendImageInformation.putExtra("date", formattedDate);
 
             startActivity(sendImageInformation);
 

@@ -30,6 +30,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
     String imageURL;
     String imageHDurl;
     String imageDesc;
+    String imageDate;
 
     ArrayList<DBImage> imageList = new ArrayList<>();
     private static int ACTIVITY_VIEW_IMAGE = 33;
@@ -71,6 +72,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         imageURL = receivedImageTitle.getStringExtra("url");
         imageHDurl = receivedImageTitle.getStringExtra("hdurl");
         imageDesc = receivedImageTitle.getStringExtra("desc");
+        imageDate = receivedImageTitle.getStringExtra("date");
 
 
         //add to database
@@ -82,10 +84,11 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             newRowValues.put(DBOpener.COL_IMAGE_URL, imageURL);
             newRowValues.put(DBOpener.COL_IMAGE_HDURL, imageHDurl);
             newRowValues.put(DBOpener.COL_IMAGE_DESC, imageDesc);
+            newRowValues.put(DBOpener.COL_IMAGE_DATE, imageDate);
             //insert row values into DB and create ID number
             long newId = db.insert(DBOpener.TABLE_NAME, null, newRowValues);
             //create new Image Object
-            DBImage newImage = new DBImage(imageTitle, imageURL, newId);
+            DBImage newImage = new DBImage(imageTitle, imageURL, newId, imageDate);
             //add image object to list
             imageList.add(newImage);
 
@@ -130,24 +133,26 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         DBOpener dbOpener = new DBOpener(this);
         db = dbOpener.getWritableDatabase();
 
-        String [] columns = {DBOpener.COL_ID, DBOpener.COL_IMAGE_TITLE, DBOpener.COL_IMAGE_URL, DBOpener.COL_IMAGE_HDURL, DBOpener.COL_IMAGE_DESC};
+        String [] columns = {DBOpener.COL_ID, DBOpener.COL_IMAGE_TITLE, DBOpener.COL_IMAGE_DATE, DBOpener.COL_IMAGE_URL, DBOpener.COL_IMAGE_HDURL, DBOpener.COL_IMAGE_DESC};
 
         //query all results in a cursor
-        Cursor results = db.query(false, DBOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, DBOpener.TABLE_NAME, columns, null, null, null, null, null, null, null);
 
         int idColIndex = results.getColumnIndex(DBOpener.COL_ID);
         int titleColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_TITLE);
         int urlColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_URL);
         int HDurlColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_HDURL);
         int descColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_DESC);
+        int dateColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_DATE);
 
         while(results.moveToNext())
         {
             String title = results.getString(titleColumnIndex);
             String url = results.getString(urlColumnIndex);
             long id = results.getLong(idColIndex);
+            String date = results.getString(dateColumnIndex);
 
-            imageList.add(new DBImage(title, url, id));
+            imageList.add(new DBImage(title, url, id, date));
         }
     }
     protected class MyOwnAdapter extends BaseAdapter {
@@ -177,12 +182,12 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
             //get textviews from rows
             TextView imageTitle = (TextView)newView.findViewById(R.id.rowTitle);
-            TextView imageURL = (TextView) newView.findViewById(R.id.rowURL);
-            TextView rowId = (TextView)newView.findViewById(R.id.row_id);
+            TextView imageDate = (TextView) newView.findViewById(R.id.rowDate);
+            //TextView rowId = (TextView)newView.findViewById(R.id.row_id);
 
             imageTitle.setText( thisRow.getTitle());
-            imageURL.setText( thisRow.getUrl());
-            rowId.setText("ID: " + thisRow.getID());
+            imageDate.setText( thisRow.getDate());
+            //rowId.setText("ID: " + thisRow.getID());
 
             //return the row
             return newView;
