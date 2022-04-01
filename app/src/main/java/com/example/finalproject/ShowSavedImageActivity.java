@@ -60,8 +60,12 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         myAdapter = new MyOwnAdapter();
         theList.setAdapter(myAdapter);
 
+        //to check if frame layout has been loaded
+        //this is the id of the empty activity layout
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
+
         //if a list item is clicked
-        theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
+        theList.setOnItemClickListener(( list,  view,  position,  id) -> {
             //show text box with option to delete
             //showImage( position );
 
@@ -80,17 +84,35 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             dataToPass.putString("imageHDurl", imageHDurl);
             dataToPass.putString("imageUrl", imageUrl);
 
-            //activity to open fragment
-            Intent nextActivity = new Intent(ShowSavedImageActivity.this, EmptyActivity.class);
-            //put selected image information in that opened fragment
-            nextActivity.putExtras(dataToPass);
-            //start activity
-            startActivity(nextActivity);
+            if (isTablet) //If you are on a tablet,
+
+                {
+                    DetailsFragment parent = new DetailsFragment();
+                    parent.setArguments( dataToPass );
+                    getSupportFragmentManager()
+                            .beginTransaction().replace(R.id.fragmentLocation, parent).commit();
+
+                } else //isPhone
+                    {
+                        //activity to open fragment
+                        Intent nextActivity = new Intent(ShowSavedImageActivity.this, EmptyActivity.class);
+                        //put selected image information in that opened fragment
+                        nextActivity.putExtras(dataToPass);
+                        //start activity
+                        startActivity(nextActivity);
+                    }
 
 
         });
 
-        //Receive data from show image activity of image user wants to save
+        theList.setOnItemLongClickListener(( list,  view,  position,  id) -> {
+            showImage(position);
+
+            return true;
+        });
+
+
+                    //Receive data from show image activity of image user wants to save
         Intent receivedImageTitle = getIntent();
         imageTitle = receivedImageTitle.getStringExtra("Title");
         imageURL = receivedImageTitle.getStringExtra("url");
@@ -132,13 +154,13 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         TextView rowId = image_view.findViewById(R.id.imageIdToDelete);
 
         imageToDelete.setText(selectedImage.getTitle());
-        rowId.setText("Title: ");
+        //rowId.setText("Title:");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete image: " +position +"?")
-                .setMessage("This cannot be undone")
+        builder.setTitle("DELETE")
+                .setMessage("Confirm removal of: ")
                 .setView(image_view)
-                .setNegativeButton("Confirm Delete", (click, b) -> {
+                .setNegativeButton("Delete", (click, b) -> {
                     deleteImage(selectedImage);
                     imageList.remove(position);
                     myAdapter.notifyDataSetChanged();
