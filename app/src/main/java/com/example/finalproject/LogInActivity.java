@@ -52,9 +52,11 @@ public class LogInActivity extends DrawerBaseActivity {
             public void onClick(View v) {
                 //when button clicked save text to shared preferences
                 saveSharedPrefs(typeField.getText().toString());
+                //savedName = typeField.getText().toString();
+                savedName = prefs.getString("TypedText", "");
                 //make toast to say save successful
-                Toast.makeText(LogInActivity.this, "Welcome "+savedName +". Please explore!", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(LogInActivity.this, "Welcome"+savedName +"!", Toast.LENGTH_LONG).show();
+                openDateActivity();
             }
         });}
 

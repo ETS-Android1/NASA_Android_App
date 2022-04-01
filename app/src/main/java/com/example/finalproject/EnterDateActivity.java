@@ -38,7 +38,7 @@ public class EnterDateActivity extends DrawerBaseActivity {
         prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
         String savedString = prefs.getString("TypedText", " " );
         greeting = (TextView) findViewById(R.id.selectDate);
-        String full = "Show " + savedString + " that image!";
+        String full = "Please pick a date" + savedString;
         greeting.setText(full);
 
         //Create date picking widget
