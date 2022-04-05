@@ -11,9 +11,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finalproject.databinding.ActivityMarsWeatherBinding;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONObject;
 
@@ -26,7 +27,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class MarsWeatherActivity extends AppCompatActivity {
+public class MarsWeatherActivity extends DrawerBaseActivity {
 
     TextView actTitle;
     TextView currentSol;
@@ -37,7 +38,7 @@ public class MarsWeatherActivity extends AppCompatActivity {
     String weatherSol, weatherTempHigh, weatherTempLow, formattedDate;
     Animation fadeInTitle, fadeInCardView;
 
-    //ActivityMarsWeatherBindingBinding activityMarsWeatherBinding;
+    ActivityMarsWeatherBinding activityMarsWeatherBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +46,14 @@ public class MarsWeatherActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_mars_weather);
 
-//        activityMarsWeatherBinding = activityMarsWeatherBinding.inflate(getLayoutInflater());
-//        allocateActivityTitle("Mars Weather");
-//        setContentView(activityMarsWeatherBinding.getRoot());
+        activityMarsWeatherBinding = activityMarsWeatherBinding.inflate(getLayoutInflater());
+        allocateActivityTitle("Mars Weather");
+        setContentView(activityMarsWeatherBinding.getRoot());
 
-        //set title of nav drawer to activity name
-//        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        View headView = navigationView.getHeaderView(0);
-//        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Mars Weather");
+        // set title of nav drawer to activity name
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headView = navigationView.getHeaderView(0);
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Mars Weather");
 
         actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);
@@ -72,7 +73,6 @@ public class MarsWeatherActivity extends AppCompatActivity {
         //Run MarsWeatherQuery; connect with API
         MarsWeatherQuery req = new MarsWeatherQuery();
         req.execute("https://api.maas2.apollorion.com/");
-
     }
 
     class MarsWeatherQuery extends AsyncTask<String, Integer, String> {

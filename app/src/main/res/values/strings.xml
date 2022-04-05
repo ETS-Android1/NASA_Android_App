@@ -17,5 +17,16 @@
     <string name="exit">Exit</string>
     <string name="enterNameButton">Submit</string>
     <string name="enterName">Beam me up Scotty?</string>
+    <string name="help">Help</string>
+    <string name="alert_acknowledge">Okay</string>
+    <string name="alert_saved_image_list">This is the Saved Image List activity!</string>
+    <string name="alert_show_image">This is the Show Image activity!</string>
+    <string name="alert_mars_weather">This is the Mars Weather Report activity!</string>
+    <string name="alert_date_picker">This is the date selection activity!</string>
+    <string name="alert_log_in">This is the login activity!</string>
+    <string name="alert_main">This is the MainActivity help dialog!</string>
+    <string name="video_link">Click for Full Video</string>
+    <string name="save_video">save video</string>
+    <string name="frag_view_image">View Image</string>
 
 </resources>

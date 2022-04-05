@@ -1,14 +1,16 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class DetailsFragment extends Fragment {
 
@@ -20,6 +22,7 @@ public class DetailsFragment extends Fragment {
     private String imageURLText;
     private String imageHDurlText;
     private String imageDescriptionText;
+    private Button viewImageButton;
 
     private AppCompatActivity parentActivity;
 
@@ -51,6 +54,15 @@ public class DetailsFragment extends Fragment {
 
         //TextView imageUrl = (TextView)result.findViewById(R.id.fragmentImageUrl);
         //imageUrl.setText("URL: " +imageURLText);
+
+        viewImageButton = result.findViewById(R.id.view_image_button);
+        viewImageButton.setOnClickListener(click -> {
+            String dateSelected = imageDateText;
+
+            Intent sendDateInformation = new Intent(parentActivity.getBaseContext(), ShowImageActivity.class);
+            sendDateInformation.putExtra("Date", dateSelected);
+            startActivity(sendDateInformation);
+        });
 
         return result;
 

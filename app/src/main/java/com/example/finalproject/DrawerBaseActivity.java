@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -42,7 +43,6 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         toggle.syncState();
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -63,6 +63,9 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
             case R.id.rocketship:
                 startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
+                break;
+            case R.id.help:
+                HelpDialogSwitcher();
                 break;
             case R.id.moon:
                 finishAffinity();
@@ -98,8 +101,12 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 startActivity(new Intent(this, ShowSavedImageActivity.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.help:
+                HelpDialogSwitcher();
+                break;
             case R.id.moon:
                 finishAffinity();
+
         }
         return true;
         //return false;
@@ -110,5 +117,48 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         if(getSupportActionBar() !=null) {
             getSupportActionBar().setTitle(titleString);
         }
+    }
+
+    public void HelpDialogSwitcher() {
+        String activityName = this.getClass().getSimpleName();
+        String alertMessage = null;
+
+        switch(activityName) {
+            case "MainActivity":
+                alertMessage = getString(R.string.alert_main);
+                break;
+            case "LogInActivity":
+                alertMessage = getString(R.string.alert_log_in);
+                break;
+            case "EnterDateActivity":
+                alertMessage = getString(R.string.alert_date_picker);
+                break;
+            case "MarsWeatherActivity":
+                alertMessage = getString(R.string.alert_mars_weather);
+                break;
+            case "ShowImageActivity":
+                alertMessage = getString(R.string.alert_show_image);
+                break;
+            case "ShowSavedImageActivity":
+                alertMessage = getString(R.string.alert_saved_image_list);
+                break;
+        }
+
+        //Initialize AlertDialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        //AlertDialog Title
+        alertDialogBuilder.setTitle(activityName);
+
+        //AlertDialog Message
+        alertDialogBuilder.setMessage(alertMessage);
+
+        //Positive Selection Button
+        alertDialogBuilder.setPositiveButton(getResources().getString(R.string.alert_acknowledge), (click, arg) -> {
+            //no action; closes alert
+        });
+
+        alertDialogBuilder.create().show();
+
     }
 }

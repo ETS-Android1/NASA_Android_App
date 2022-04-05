@@ -1,9 +1,5 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,11 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalproject.databinding.ActivityShowImageBinding;
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.finalproject.databinding.ActivityShowSavedImageBinding;
 import com.google.android.material.navigation.NavigationView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

@@ -36,6 +36,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class ShowImageActivity extends DrawerBaseActivity {
@@ -47,6 +49,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
     TextView imageDescription;
     TextView hdURL;
     TextView dateDisplay;
+    Button saveImageButton;
     String datePassed;
     String imgTitle;
     ProgressBar pb;
@@ -54,7 +57,10 @@ public class ShowImageActivity extends DrawerBaseActivity {
     String HDimageURL;
     String imageDesc;
     String formattedDate;
+    String mediaType;
+    String videoID;
     Animation fadeInCardView;
+    URL urll;
 
     Bitmap imageBitmap;
 
@@ -105,23 +111,21 @@ public class ShowImageActivity extends DrawerBaseActivity {
         req.execute("https://api.nasa.gov/planetary/apod?api_key=sA4ZPV2ROeOvL7cSDa5ktjxKYa8VXTCbi2gDTfjF&date=" + datePassed);
 
         //button to initiate save image to database
-        Button saveImageButton = findViewById(R.id.saveImage);
+        saveImageButton = findViewById(R.id.saveImage);
         saveImageButton.setOnClickListener(click -> {
 
             Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
 
             sendImageInformation.putExtra("Title", imgTitle);
             sendImageInformation.putExtra("url", imageURL);
-            sendImageInformation.putExtra("date", formattedDate);
+            sendImageInformation.putExtra("date", datePassed);
             sendImageInformation.putExtra("explanation", imageDesc);
             sendImageInformation.putExtra("HDurl", HDimageURL);
-
-
-
 
             startActivity(sendImageInformation);
 
         });
+        saveImageButton.setVisibility(View.INVISIBLE);
 
     }
 
@@ -148,22 +152,31 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 }
                 String result = sb.toString();
                 JSONObject imageData = new JSONObject(result);
-
+                mediaType = imageData.getString("media_type");
+                Log.d("MediaType ", mediaType);
                 imageURL = imageData.getString("url");
                 publishProgress(25);
                 imgTitle = imageData.getString("title");
                 publishProgress(50);
-                HDimageURL = imageData.getString("hdurl");
-                publishProgress(60);
                 imageDesc = imageData.getString("explanation");
-                publishProgress(70);
+                publishProgress(60);
                 Log.d("ImageDisplayActivity: ", imageURL);
 
-                URL urll = new URL(imageURL);
-                InputStream is = urll.openConnection().getInputStream();
-                imageBitmap = BitmapFactory.decodeStream(is);
-                FileOutputStream outputStream = openFileOutput(imgTitle, Context.MODE_PRIVATE);
-                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                if (!"video".equals(mediaType)) {
+                    HDimageURL = imageData.getString("hdurl");
+                    publishProgress(70);
+                    urll = new URL(imageURL);
+                }
+                else {
+                    videoID = extractYTId(imageURL);
+                    urll = new URL("http://img.youtube.com/vi/"+ videoID + "/mqdefault.jpg");
+                }
+
+
+                    InputStream is = urll.openConnection().getInputStream();
+                    imageBitmap = BitmapFactory.decodeStream(is);
+                    FileOutputStream outputStream = openFileOutput(imgTitle, Context.MODE_PRIVATE);
+                    imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 
 
             } catch (Exception e) {
@@ -183,21 +196,30 @@ public class ShowImageActivity extends DrawerBaseActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //Return API information for setting to display
             image.setImageBitmap(imageBitmap);
-            selImageTitle.setText(imgTitle);
-            imageDescription.setText(imageDesc);
-            dateDisplay.setText(formattedDate);
-
             //Set Background image dynamically, blur
             bgImage.setImageBitmap(imageBitmap);
             bgImage.setBlur(20);
 
+            //Return API information for setting to display
+            if (!"video".equals(mediaType)) {
+                String urlReference = "<a href='" + HDimageURL + "'> " + getResources().getString(R.string.hd_url_link) + " </a>";
+                hdURL.setText(Html.fromHtml(urlReference));
+            }
+            else {
+                //Opens Video Link
+                String urlReference = "<a href='" + imageURL + "'> " + getResources().getString(R.string.video_link) + " </a>";
+                hdURL.setText(Html.fromHtml(urlReference));
+                saveImageButton.setText(R.string.save_video);
+            }
+
+            selImageTitle.setText(imgTitle);
+            imageDescription.setText(imageDesc);
+            dateDisplay.setText(formattedDate);
+
             //allow user option to click to see HD image
             hdURL.setClickable(true);
             hdURL.setMovementMethod(LinkMovementMethod.getInstance());
-            String urlReference = "<a href='" + HDimageURL + "'> " + getResources().getString(R.string.hd_url_link) + " </a>";
-            hdURL.setText(Html.fromHtml(urlReference));
 
             //show CardView once everything loads
             imageDisplayCardView.setVisibility(View.VISIBLE);
@@ -207,7 +229,20 @@ public class ShowImageActivity extends DrawerBaseActivity {
             //Remove progress bar
             pb.setVisibility(View.INVISIBLE);
 
-
+            //Make save button visible once post has loaded
+            saveImageButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    public static String extractYTId(String ytUrl) {
+        String vId = null;
+        Pattern pattern = Pattern.compile(
+                "^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$",
+                Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(ytUrl);
+        if (matcher.matches()){
+            vId = matcher.group(1);
+        }
+        return vId;
     }
 }

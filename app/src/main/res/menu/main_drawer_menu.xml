@@ -38,9 +38,16 @@
         <item android:id="@+id/moon"
             android:icon="@drawable/ic_moon"
             android:title="@string/exit"
-            app:showAsAction="always"
-            android:orderInCategory="5"
+            app:showAsAction="ifRoom"
+            android:orderInCategory="6"
             />
+
+        <item android:id="@+id/help"
+            android:icon="@drawable/help_icon"
+            android:title="@string/help"
+            app:showAsAction="always"
+            android:visible="true"
+            android:orderInCategory="5"/>
     </group>
 
 </menu>
