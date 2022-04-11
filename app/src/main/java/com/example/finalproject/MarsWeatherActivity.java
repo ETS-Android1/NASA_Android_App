@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -46,7 +47,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
 
         setContentView(R.layout.activity_mars_weather);
 
-        activityMarsWeatherBinding = activityMarsWeatherBinding.inflate(getLayoutInflater());
+        activityMarsWeatherBinding = ActivityMarsWeatherBinding.inflate(getLayoutInflater());
         allocateActivityTitle("Mars Weather");
         setContentView(activityMarsWeatherBinding.getRoot());
 
@@ -88,7 +89,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
 
                 InputStream input = urlConnection.getInputStream();
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8), 8);
                 StringBuilder sb = new StringBuilder();
 
                 String line = null;
@@ -149,7 +150,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
 
     private void startCountAnimation(String curNum, TextView updatingView) {
 
-        Integer num = Integer.parseInt(curNum);
+        int num = Integer.parseInt(curNum);
         ValueAnimator animator = ValueAnimator.ofInt(num - 20, num);
         animator.setDuration(2500);
         animator.addUpdateListener(animation -> updatingView.setText(animation.getAnimatedValue().toString()));

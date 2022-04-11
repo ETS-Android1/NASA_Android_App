@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -143,7 +144,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
                 InputStream input = urlConnection.getInputStream();
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8), 8);
                 StringBuilder sb = new StringBuilder();
 
                 String line = null;
@@ -235,6 +236,8 @@ public class ShowImageActivity extends DrawerBaseActivity {
     }
 
     public static String extractYTId(String ytUrl) {
+
+        //Regex for extracting the video ID from Youtube
         String vId = null;
         Pattern pattern = Pattern.compile(
                 "^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$",

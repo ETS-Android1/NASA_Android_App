@@ -19,14 +19,25 @@
     <string name="enterName">Beam me up Scotty?</string>
     <string name="help">Help</string>
     <string name="alert_acknowledge">Okay</string>
-    <string name="alert_saved_image_list">This is the Saved Image List activity!</string>
-    <string name="alert_show_image">This is the Show Image activity!</string>
-    <string name="alert_mars_weather">This is the Mars Weather Report activity!</string>
-    <string name="alert_date_picker">This is the date selection activity!</string>
-    <string name="alert_log_in">This is the login activity!</string>
-    <string name="alert_main">This is the MainActivity help dialog!</string>
+    <string name="alert_saved_image_list_message">View all of your saved images here- click on the list item to view details regarding the image; long press on a list item to delete it.</string>
+    <string name="alert_show_image_message">Here you can view the astronomy image/video for the specified date! Each post includes a detailed description of the image, along with a link to the HD image/full video. If you like the image/video, be sure to save it by pressing the button in the bottom right corner.</string>
+    <string name="alert_mars_weather_message">Ever wondered what the weather is like on Mars? Never forget to bring a jacket out on your leisurely trip up Olympus Mons again thanks to this handy activity! The activity provides weather information from the most recent data gathered by the Curiosity Rover, using the MAAS 2 Rest API.</string>
+    <string name="alert_date_picker_message">Pick a date from the calendar below in order to see the corresponding Astronomy Image of the Day.</string>
+    <string name="alert_log_in_message">Provide your name (or Social Security Number, if you would prefer) in the text field below to personalize your experience in the app!</string>
+    <string name="alert_main_message">Welcome to Will Brisebois and Aladah Moore\'s final project for CST2335! The application, based on the prompt to produce an application centrered on NASA\'s Astronomy Image of the Day, presents 4 distinct activities: an elective identification page, an image viewing page, a saved image list, and a mars weather page. Please use the navigation bar or toolbar to view the activity of your choice!</string>
     <string name="video_link">Click for Full Video</string>
     <string name="save_video">save video</string>
     <string name="frag_view_image">View Image</string>
-
+    <string name="snackbar_message">Welcome</string>
+    <string name="snackbar_undo">Undo</string>
+    <string name="imageTitleDetails">"Title: "</string>
+    <string name="imageDateDetails">Date: </string>
+    <string name="imageDescriptionDetails">Description: </string>
+    <string name="imageHdUrlDetails">HD URL: </string>
+    <string name="alert_title_main">Landing Page</string>
+    <string name="alert_title_log_in">Log In Page</string>
+    <string name="alert_title_picker">Date Selector</string>
+    <string name="alert_title_weather">Mars Weather</string>
+    <string name="alert_title_image">Astronomy Image of the Day</string>
+    <string name="alert_title_image_list">Saved Images List</string>
 </resources>

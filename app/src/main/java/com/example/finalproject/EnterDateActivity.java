@@ -34,28 +34,27 @@ public class EnterDateActivity extends DrawerBaseActivity {
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText("Pick a date");
 
+        Button dateSelectButton = findViewById(R.id.selectDate);
+
         //get name from shared preferences
         prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
-        String savedString = prefs.getString("TypedText", " " );
-        greeting = (TextView) findViewById(R.id.selectDate);
-        String full = "Please pick a date" + savedString;
-        greeting.setText(full);
+        String savedString = prefs.getString("TypedText", " ");
+        String full = "Please pick a date " + savedString;
+        dateSelectButton.setText(full);
 
         //Create date picking widget
         android.widget.DatePicker calendar;
         calendar = findViewById(R.id.datePicker);
 
-        Button dateSelectButton = findViewById(R.id.selectDate);
-
         //set Max date to current day
         calendar.setMaxDate(new Date().getTime());
 
-    dateSelectButton.setOnClickListener(click -> {
-        String dateSelected = calendar.getYear() + "-" + (calendar.getMonth() + 1) + "-" + calendar.getDayOfMonth();
+        dateSelectButton.setOnClickListener(click -> {
+            String dateSelected = calendar.getYear() + "-" + (calendar.getMonth() + 1) + "-" + calendar.getDayOfMonth();
 
-        Intent sendDateInformation = new Intent(getBaseContext(), ShowImageActivity.class);
-        sendDateInformation.putExtra("Date", dateSelected);
-        startActivity(sendDateInformation);
-    });
+            Intent sendDateInformation = new Intent(getBaseContext(), ShowImageActivity.class);
+            sendDateInformation.putExtra("Date", dateSelected);
+            startActivity(sendDateInformation);
+        });
     }
 }

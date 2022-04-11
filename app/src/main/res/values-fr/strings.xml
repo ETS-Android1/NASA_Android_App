@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"></string>
+    <string name="menu_drawer_open">Ouvert</string>
+    <string name="menu_drawer_closed">Fermé</string>
+    <string name="appAct">Nom de l\'activité</string>
+    <string name="newsPage">Nouvelles</string>
+    <string name="logInPage">Veuillez indiquer votre nom</string>
+    <string name="activityTitle">Bienvenue</string>
+    <string name="bookmarkActivityTitle">Marque-pages</string>
+    <string name="open">Ouvert</string>
+    <string name="close">Fermé</string>
+    <string name="hd_url_link">Cliquer pour voir l\'image HD</string>
+    <string name="myImages">Mes images</string>
+    <string name="searchMenu">Recherche</string>
+    <string name="homeMenu">Accueil</string>
+    <string name="marsWeather">La météo de Mars</string>
+    <string name="exit">Sortir</string>
+    <string name="enterNameButton">Soumettre</string>
+    <string name="enterName">Téléportez-moi Scotty?</string>
+    <string name="help">Aide</string>
+    <string name="alert_acknowledge">Compris</string>
+    <string name="alert_saved_image_list_message">This is the Saved Image List activity!</string>
+    <string name="alert_show_image_message">This is the Show Image activity!</string>
+    <string name="alert_mars_weather_message">This is the Mars Weather Report activity!</string>
+    <string name="alert_date_picker_message">This is the date selection activity!</string>
+    <string name="alert_log_in_message">This is the login activity!</string>
+    <string name="alert_main_message">This is the MainActivity help dialog!</string>
+    <string name="video_link">Cliquez pour regarder la vidéo</string>
+    <string name="save_video">sauvegarder la vidéo</string>
+    <string name="frag_view_image">Voir l\'image</string>
+    <string name="snackbar_message">Bienvenue</string>
+    <string name="snackbar_undo">Défaire</string>
+    <string name="imageTitleDetails">"Titre: "</string>
+    <string name="imageDateDetails">Date: </string>
+    <string name="imageDescriptionDetails">Description: </string>
+    <string name="imageHdUrlDetails">HD URL: </string>
+    <string name="alert_title_main">Accueil</string>
+    <string name="alert_title_log_in">Identification</string>
+    <string name="alert_title_picker">Sélecteur de date</string>
+    <string name="alert_title_weather">La météo de Mars</string>
+    <string name="alert_title_image">Image astronomique du jour</string>
+    <string name="alert_title_image_list">Liste d\'images sauvegardées</string>
+</resources>
