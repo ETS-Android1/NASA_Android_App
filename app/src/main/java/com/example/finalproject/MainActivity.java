@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.example.finalproject.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -20,7 +21,7 @@ public class MainActivity extends DrawerBaseActivity {
     SharedPreferences prefs = null;
     TextView greeting;
     String full;
-    ArrayList<String> greetingList = new ArrayList<String>();
+    Animation fadeInGreeting;
 
 
 
@@ -61,8 +62,9 @@ public class MainActivity extends DrawerBaseActivity {
             }
         }
         greeting.setText(full);
-
-
+        fadeInGreeting = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+        fadeInGreeting.setStartOffset(250);
+        greeting.startAnimation(fadeInGreeting);
 
 
 

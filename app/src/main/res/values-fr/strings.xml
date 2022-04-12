@@ -56,6 +56,18 @@
     <string name="imageDescriptionDetails">Description: </string>
     <string name="imageHdUrlDetails">HD URL: </string>
 
+    <!--Mars Weather Texts-->
+    <string name="mars_weather_title">Météo sur Mars</string>
+    <string name="image_of_mars_content_description">Image de Mars</string>
+    <string name="mars_weather_sol">Sol</string>
+    <string name="mars_weather_current_sol_default">0</string>
+    <string name="mars_weather_temp_high">Minimum:</string>
+    <string name="mars_weather_temp_high_fetch_default">tempHigh ℃</string>
+    <string name="mars_weather_terrestrial_date">Date terrestre (dernière mise à jour)</string>
+    <string name="mars_weather_temp_low">Maximum:</string>
+    <string name="mars_weather_temp_low_fetch_default">tempLow ℃</string>
+    <string name="mars_weather_current_date_default">curDate</string>
+
     <!--Content Descriptions-->
     <string name="aotd_content_description">Image astronomique du jour</string>
 

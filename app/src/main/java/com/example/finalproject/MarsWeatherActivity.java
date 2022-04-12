@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -108,12 +107,13 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
                 String tempString = weatherData.getString("terrestrial_date");
 
                 //Date conversion logic
+                boolean curLanguage = Locale.getDefault().getISO3Language().equals(Locale.CANADA.getISO3Language());
                 LocalDateTime date = LocalDateTime.parse(tempString, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-                formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
-                Log.d("Date", String.valueOf(date));
-                Log.d("Date", String.valueOf(formattedDate));
-
-
+                if (curLanguage != true) {
+                    formattedDate = date.format(DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.CANADA_FRENCH));
+                }else {
+                    formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
