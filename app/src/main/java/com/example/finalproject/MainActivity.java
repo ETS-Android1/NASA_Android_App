@@ -47,7 +47,7 @@ public class MainActivity extends DrawerBaseActivity {
         //Else, randomly selects from array of greetings
         greeting = (TextView) findViewById(R.id.marsWeatherGreeting);
         if (savedString.trim().isEmpty()) {
-            full = "Please go to the identification page to personalize your experience!";
+            full = getString(R.string.no_information_greeting);
         }
         else {
             Random rand = new Random();

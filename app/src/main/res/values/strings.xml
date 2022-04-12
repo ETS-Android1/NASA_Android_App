@@ -46,6 +46,7 @@
     <string name="snackbar_undo">Undo</string>
 
     <!--Landing Page Greetings-->
+    <string name="no_information_greeting">Please go to the user information page to personalize your experience!</string>
     <string name="greet1">Welcome back, %s!</string>
     <string name="greet2">Hi %s, why don\'t you go look at today\'s astronomy image?</string>
     <string name="greet3">You MUST be wondering how cold it is on Mars today, %s. Go check it out!</string>
@@ -83,6 +84,7 @@
     <string name="open">open</string>
     <string name="close">closed</string>
     <string name="enterName">Beam me up Scotty?</string>
+
 
 
 </resources>

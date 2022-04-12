@@ -49,6 +49,7 @@
     <string name="greet1">Bienvenue à nouveau, %s!</string>
     <string name="greet2">Bonjour %s, pourquoi ne pas regarder l\'image d\'astronomie d\'aujourd\'hui?</string>
     <string name="greet3">Il fait froid sur Mars aujourd\'hui, %s? Va vérifier!</string>
+    <string name="no_information_greeting">Veuillez vous diriger vers la page des infos utilisateur pour personnaliser votre expérience!</string>
 
     <!--Fragment Detail Categories-->
     <string name="imageTitleDetails">Titre: </string>
