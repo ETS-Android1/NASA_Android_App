@@ -34,7 +34,7 @@ public class LogInActivity extends DrawerBaseActivity {
         //set title of nav drawer to activity name
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
-        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Log In");
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.user_id_page);
 
         //get edit text
         textEntered = (EditText) findViewById(R.id.enterName);

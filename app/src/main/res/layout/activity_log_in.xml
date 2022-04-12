@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogInActivity">
+    tools:context=".LogInActivity"
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/bookmarkPage"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:textSize="20dp"
         android:layout_marginTop="192dp"
         android:text="@string/logInPage"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blueComplement"
         app:layout_constraintBottom_toTopOf="@+id/enterNameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +35,9 @@
 
     <Button
         android:id="@+id/enterNameButton"
-        android:layout_width="125dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
-        android:backgroundTint="@android:color/holo_orange_light"
         android:text="@string/enterNameButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

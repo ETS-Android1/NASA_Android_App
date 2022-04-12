@@ -32,14 +32,14 @@ public class EnterDateActivity extends DrawerBaseActivity {
         //set title of nav drawer to activity name
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
-        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Pick a date");
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.date_picker_page);
 
         Button dateSelectButton = findViewById(R.id.selectDate);
 
         //get name from shared preferences
         prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
         String savedString = prefs.getString("TypedText", " ");
-        String full = "Please pick a date " + savedString;
+        String full = getResources().getString(R.string.date_picker_button_text, savedString);
         dateSelectButton.setText(full);
 
         //Create date picking widget

@@ -78,7 +78,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
         //set title of nav drawer to activity name
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
-        ((TextView) headView.findViewById(R.id.activityTitle)).setText("View Image");
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.aotd_page);
 
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();

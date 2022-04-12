@@ -54,7 +54,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         // set title of nav drawer to activity name
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
-        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Mars Weather");
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.mars_weather_page);
 
         actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);

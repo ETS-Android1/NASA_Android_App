@@ -56,14 +56,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:scaleType="centerCrop">
+                        android:scaleType="centerCrop"
+                        android:layout_marginBottom="5dp"
+                        android:contentDescription="@string/aotd_content_description">
 
                     </ImageView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="5dp">
 
                         <Space
                             android:layout_width="wrap_content"
@@ -81,7 +84,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold" />
 
                         <Space
                             android:layout_width="wrap_content"
@@ -105,7 +108,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_weight="1"
                             android:textColor="@color/white"
-                            android:textAlignment="textStart"></TextView>
+                            android:textAlignment="textStart" />
 
                         <Space
                             android:layout_width="wrap_content"
@@ -122,7 +125,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_weight="1"
                             android:linksClickable="true"
-                            android:textAlignment="textEnd"></TextView>
+                            android:textAlignment="textEnd" />
 
                     </LinearLayout>
 
@@ -166,7 +169,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Space
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
@@ -176,10 +179,10 @@
             android:id="@+id/saveImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
+            android:layout_gravity="center|end"
             android:layout_margin="10dp"
             android:layout_marginBottom="16dp"
-            android:text="Save Image"></Button>
+            android:text="@string/save_image" />
     </LinearLayout>
 
 
