@@ -6,7 +6,7 @@
         <!-- menuitems for nav drawer and toolbar -->
         <item android:id="@+id/helmet"
             android:icon="@drawable/ic_helmetnasa"
-            android:title="@string/homeMenu"
+            android:title="@string/userMenu"
             android:visible="true"
             app:showAsAction="always"
             android:orderInCategory="0"/>

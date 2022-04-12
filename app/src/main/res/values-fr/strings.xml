@@ -35,7 +35,7 @@
     <!--Menu Item Titles-->
     <string name="myImages">Mes images</string>
     <string name="searchMenu">Recherche</string>
-    <string name="homeMenu">Accueil</string>
+    <string name="userMenu">Infos utilisateur</string>
     <string name="marsWeather">La météo de Mars</string>
     <string name="exit">Sortir</string>
     <string name="help">Aide</string>

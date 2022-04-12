@@ -35,7 +35,7 @@
     <!--Menu Item Titles-->
     <string name="myImages">My Images</string>
     <string name="searchMenu">Search</string>
-    <string name="homeMenu">Home</string>
+    <string name="userMenu">User Information</string>
     <string name="marsWeather">Mars Weather</string>
     <string name="exit">Exit</string>
     <string name="help">Help</string>
