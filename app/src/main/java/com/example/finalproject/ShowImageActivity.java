@@ -155,14 +155,13 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 String result = sb.toString();
                 JSONObject imageData = new JSONObject(result);
                 mediaType = imageData.getString("media_type");
-                Log.d("MediaType ", mediaType);
                 imageURL = imageData.getString("url");
                 publishProgress(25);
                 imgTitle = imageData.getString("title");
                 publishProgress(50);
                 imageDesc = imageData.getString("explanation");
                 publishProgress(60);
-                Log.d("ImageDisplayActivity: ", imageURL);
+
 
                 if (!"video".equals(mediaType)) {
                     HDimageURL = imageData.getString("hdurl");
