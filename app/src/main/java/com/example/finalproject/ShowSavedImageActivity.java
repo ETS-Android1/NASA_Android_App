@@ -19,6 +19,24 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+/**
+ * The ShowSavedImageActivity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ * This activity displays a list view with all the saved images
+ * A user can short click the list item to view detailed info about the image
+ *
+ * @see com.example.finalproject.DetailsFragment
+ *
+ * A user can long click an item for the option to delete it from the database
+ *
+ * This activity binds to DrawerBaseActivity for navigation drawer and toolbar.
+ *
+ * @see com.example.finalproject.DrawerBaseActivity
+ *
+ */
 public class ShowSavedImageActivity extends DrawerBaseActivity {
 
     String imageTitle;
@@ -35,6 +53,13 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
     ActivityShowSavedImageBinding activityShowSavedImageBinding;
 
+    /**
+     * On creation of this activity binding is used to share the nav drawer and toolbar
+     *
+     * All saved images are loaded from the database and displayed in list view
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,15 +125,14 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
 
         });
-
+        //if item is long clicked show the image
         theList.setOnItemLongClickListener(( list,  view,  position,  id) -> {
             showImage(position);
-
             return true;
         });
 
 
-                    //Receive data from show image activity of image user wants to save
+        //Receive data from show image activity of image user wants to save
         Intent receivedImageTitle = getIntent();
         imageTitle = receivedImageTitle.getStringExtra("Title");
         imageURL = receivedImageTitle.getStringExtra("url");
@@ -133,7 +157,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             DBImage newImage = new DBImage(imageTitle, imageURL, imageHDurl, newId, imageDate, imageDesc);
             //add image object to list
             imageList.add(newImage);
-
+            //displays when image saved successfully
             Toast.makeText(this, "New Image saved ID: "+newId, Toast.LENGTH_LONG).show();
         }
         myAdapter.notifyDataSetChanged();
@@ -147,10 +171,9 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         View image_view = getLayoutInflater().inflate(R.layout.image_delete, null);
 
         TextView imageToDelete = image_view.findViewById(R.id.imageToDelete);
-        TextView rowId = image_view.findViewById(R.id.imageIdToDelete);
+
 
         imageToDelete.setText(selectedImage.getTitle());
-        //rowId.setText("Title:");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("DELETE")
@@ -166,10 +189,17 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
     }
 
+    /**
+     * method to delete an image
+     * @param selectedImage
+     */
     private void deleteImage(DBImage selectedImage) {
         db.delete(DBOpener.TABLE_NAME, DBOpener.COL_ID + " = ?", new String[] {Long.toString(selectedImage.getID())});
     }
 
+    /**
+     * method to load saved images from database
+     */
     private void loadDataFromDatabase() {
         //get db connection
         DBOpener dbOpener = new DBOpener(this);
@@ -199,6 +229,10 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             imageList.add(new DBImage(title, url, HDurl, id, date, desc));
         }
     }
+
+    /**
+     * class to use BaseAdapter class with list view items
+     */
     protected class MyOwnAdapter extends BaseAdapter {
 
         @Override

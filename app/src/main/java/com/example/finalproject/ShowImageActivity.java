@@ -40,6 +40,26 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The ShowImageActivity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ *This is the activity that pops up to display the image
+ * associated with the date picked in EnterDateActivity
+ *
+ * @see com.example.finalproject.EnterDateActivity
+ *
+ * The button allows user option to save image to database
+ *
+ * @see com.example.finalproject.ShowSavedImageActivity
+ *
+ * This activity binds to DrawerBaseActivity for navigation drawer and toolbar.
+ *
+ * @see com.example.finalproject.DrawerBaseActivity
+ *
+ */
 
 public class ShowImageActivity extends DrawerBaseActivity {
 
@@ -67,6 +87,12 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
     ActivityShowImageBinding activityShowImageBinding;
 
+    /**
+     * On creation of this activity binding will be used to share the nav drawer and toolbar
+     *
+     * Intent passed from EnterDateActivity contains date of image to show
+     * @param savedInstanceState
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,10 +140,11 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
         //button to initiate save image to database
         saveImageButton = findViewById(R.id.saveImage);
+        //if button clicked
         saveImageButton.setOnClickListener(click -> {
 
             Intent sendImageInformation = new Intent(getBaseContext(), ShowSavedImageActivity.class);
-
+            //put image information in intent object to start ShowSavedImageActivity
             sendImageInformation.putExtra("Title", imgTitle);
             sendImageInformation.putExtra("url", imageURL);
             sendImageInformation.putExtra("date", datePassed);
@@ -131,9 +158,11 @@ public class ShowImageActivity extends DrawerBaseActivity {
 
     }
 
+    /**
+     * Asynctask used to query NASA IOTD API
+     */
     class IOTDQuery extends AsyncTask<String, Integer, String> {
 
-        //Bitmap currentImage = null;
 
         @Override
         protected String doInBackground(String... args) {
@@ -162,7 +191,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
                 imageDesc = imageData.getString("explanation");
                 publishProgress(60);
 
-
+                //if mediaType is a video get the HD url
                 if (!"video".equals(mediaType)) {
                     HDimageURL = imageData.getString("hdurl");
                     publishProgress(70);
@@ -235,6 +264,11 @@ public class ShowImageActivity extends DrawerBaseActivity {
         }
     }
 
+    /**
+     * This method allows us to extract videoId from YouTube url
+     * @param ytUrl the url to parse
+     * @return a string of videoId
+     */
     public static String extractYTId(String ytUrl) {
 
         //Regex for extracting the video ID from Youtube

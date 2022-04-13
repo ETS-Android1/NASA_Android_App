@@ -3,7 +3,18 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+/**
+ * The Empty Activity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ * This activity is used by DetailsFragmentActivity as a parent
+ * @see com.example.finalproject.DetailsFragment
+ *
 
+ *
+ */
 public class EmptyActivity extends AppCompatActivity {
 
     @Override

@@ -27,6 +27,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * The MarsWeatherActivity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ * This activity pulls data from MarsWeatherQuery API
+ * to display Mars weather to users
+ *
+ * This activity binds to DrawerBaseActivity for navigation drawer and toolbar.
+ *
+ * @see com.example.finalproject.DrawerBaseActivity
+ *
+ */
+
 public class MarsWeatherActivity extends DrawerBaseActivity {
 
     TextView actTitle;
@@ -40,6 +55,10 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
 
     ActivityMarsWeatherBinding activityMarsWeatherBinding;
 
+    /**
+     * On creation of this activity binding is used to share nav drawer and toolbar
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +74,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.mars_weather_page);
         ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.mars_weather_version);
-
+        //use variables to grab xml items by id
         actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);
         tempHigh = findViewById(R.id.tempHighDisplay);
@@ -76,6 +95,9 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         req.execute("https://api.maas2.apollorion.com/");
     }
 
+    /**
+     * Asynctask used to query API
+     */
     class MarsWeatherQuery extends AsyncTask<String, Integer, String> {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -128,6 +150,11 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
             super.onProgressUpdate(args);
         }
 
+        /**
+         * upon completion of AsyncTask this method will execute
+         * @param s
+         */
+
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected void onPostExecute(String s) {
@@ -149,6 +176,11 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         }
     }
 
+    /**
+     * This method programs animation into display of mars weather
+     * @param curNum
+     * @param updatingView
+     */
     private void startCountAnimation(String curNum, TextView updatingView) {
 
         int num = Integer.parseInt(curNum);
