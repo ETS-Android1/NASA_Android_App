@@ -72,6 +72,15 @@
     <!--Content Descriptions-->
     <string name="aotd_content_description">Image astronomique du jour</string>
 
+    <!--Version Information-->
+    <string name="saved_image_version">1.00</string>
+    <string name="aotd_version">1.00</string>
+    <string name="mars_weather_version">1.00</string>
+    <string name="landing_page_version">1.00</string>
+    <string name="user_id_version">1.00</string>
+    <string name="date_picker_version">1.00</string>
+    <string name="version_title">Version:</string>
+
     <!--Miscellaneous-->
     <string name="app_name"></string>
     <string name="menu_drawer_open">Ouvert</string>
@@ -85,10 +94,4 @@
     <string name="close">Fermé</string>
     <string name="enterName">Téléportez-moi Scotty?</string>
     <string name="hint_name">Nom</string>
-    <string name="saved_image_version">Version 1.00</string>
-    <string name="aotd_version">1.00</string>
-    <string name="landing_page_version">1.00</string>
-    <string name="user_id_version">1.00</string>
-    <string name="date_picker_version" />
-    <string name="version_title">Version:</string>
 </resources>
