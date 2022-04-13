@@ -73,7 +73,7 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.mars_weather_page);
-        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.mars_weather_version);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(BuildConfig.VERSION_NAME);
         //use variables to grab xml items by id
         actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);

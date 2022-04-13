@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentLocation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragmentLocation"
     android:background="@color/black">
 
-    <TextView
-        android:paddingTop="30dp"
-        android:paddingBottom="20dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageTitle"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/blueComplement"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/fragmentImageDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragmentImageTitle"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:paddingBottom="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageDescription"
-        android:layout_below="@id/fragmentImageDate"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/yellowOrange"/>
+            <TextView
+                android:id="@+id/fragmentImageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:paddingBottom="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/blueComplement"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageUrl"
-        android:layout_below="@id/fragmentImageDescription"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="@color/yellowOrange"/>
+            <TextView
+                android:id="@+id/fragmentImageDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmentImageTitle"
+                android:paddingBottom="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/fragmentImageHDurl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragmentImageUrl"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:paddingBottom="20dp"/>
+            <TextView
+                android:id="@+id/fragmentImageDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmentImageDate"
+                android:textColor="@color/yellowOrange"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/view_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragmentImageHDurl"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
-        android:gravity="center"
-        android:text="@string/frag_view_image"
-        android:textColor="@color/yellowOrange">
+            <TextView
+                android:id="@+id/fragmentImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmentImageDescription"
+                android:textColor="@color/yellowOrange"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-    </Button>
+            <TextView
+                android:id="@+id/fragmentImageHDurl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmentImageUrl"
+                android:paddingBottom="20dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/view_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmentImageHDurl"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:gravity="center"
+                android:text="@string/frag_view_image"
+                android:textColor="@color/white">
+
+            </Button>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -9,25 +9,22 @@
         <entry key="..\:/FinalProject/app/src/main/res/layout/activity_drawer_base.xml" value="0.25" />
         <entry key="..\:/FinalProject/app/src/main/res/layout/activity_enter_date.xml" value="0.3385416666666667" />
         <entry key="..\:/FinalProject/app/src/main/res/layout/activity_log_in.xml" value="0.32065217391304346" />
-        <entry key="..\:/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/FinalProject/app/src/main/res/layout/activity_mars_weather.xml" value="0.33" />
-        <entry key="..\:/FinalProject/app/src/main/res/layout/activity_show_image.xml" value="0.25" />
+        <entry key="..\:/FinalProject/app/src/main/res/layout/activity_show_image.xml" value="0.1" />
+        <entry key="..\:/FinalProject/app/src/main/res/layout/activity_show_saved_image.xml" value="0.346875" />
         <entry key="..\:/FinalProject/app/src/main/res/layout/content_layout.xml" value="0.22056159420289856" />
-        <entry key="..\:/FinalProject/app/src/main/res/layout/main_drawer_header.xml" value="0.22056159420289856" />
+        <entry key="..\:/FinalProject/app/src/main/res/layout/fragment_details.xml" value="0.34322916666666664" />
+        <entry key="..\:/FinalProject/app/src/main/res/layout/main_drawer_header.xml" value="0.33" />
         <entry key="..\:/FinalProject/app/src/main/res/menu/main_drawer_menu.xml" value="0.3453125" />
         <entry key="..\:/FinalProject/app/src/main/res/menu/toolbar_menu.xml" value="0.3140625" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/ic_news.xml" value="0.1" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_book_mark.xml" value="0.1" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_dashboard.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_drawer_base.xml" value="0.1" />
-        <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_enter_date.xml" value="0.12310030395136778" />
-        <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_log_in.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.2056159420289855" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_news.xml" value="0.1" />
-        <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_show_image.xml" value="0.12310030395136778" />
-        <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_show_saved_image.xml" value="0.16304347826086957" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/content_layout.xml" value="0.1" />
-        <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/fragment_details.xml" value="0.20606884057971014" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/layout/main_drawer_header.xml" value="0.176" />
         <entry key="..\:/Users/Aladah/AndroidStudioProjects/FinalProject/app/src/main/res/menu/main_drawer_menu.xml" value="0.2" />
       </map>

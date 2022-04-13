@@ -61,7 +61,7 @@ public class LogInActivity extends DrawerBaseActivity {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.user_id_page);
-        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.user_id_version);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(BuildConfig.VERSION_NAME);
 
         //get user input from edit text and save in variable
         textEntered = (EditText) findViewById(R.id.enterName);
@@ -74,7 +74,7 @@ public class LogInActivity extends DrawerBaseActivity {
         //Animate title TextView
         title = findViewById(R.id.login_title);
 
-        fadeInTitle = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
+        fadeInTitle = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
         fadeInTitle.setStartOffset(100);
         title.startAnimation(fadeInTitle);
 

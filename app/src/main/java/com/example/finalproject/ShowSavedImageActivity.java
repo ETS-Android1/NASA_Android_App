@@ -70,7 +70,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.saved_image_page);
-        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.saved_image_version);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(BuildConfig.VERSION_NAME);
 
         //setContentView(R.layout.activity_show_saved_image);
         ListView theList = (ListView)findViewById(R.id.the_list);
