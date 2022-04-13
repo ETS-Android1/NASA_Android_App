@@ -88,4 +88,5 @@
     <string name="close">Fermé</string>
     <string name="enterName">Téléportez-moi Scotty?</string>
     <string name="hint_name">Nom</string>
+    <string name="new_image_toast">Nouvelle image enregistrée ID: </string>
 </resources>

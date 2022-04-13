@@ -158,7 +158,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             //add image object to list
             imageList.add(newImage);
             //displays when image saved successfully
-            Toast.makeText(this, "New Image saved ID: "+newId, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.new_image_toast)+ newId, Toast.LENGTH_LONG).show();
         }
         myAdapter.notifyDataSetChanged();
 

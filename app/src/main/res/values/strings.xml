@@ -88,7 +88,7 @@
     <string name="close">closed</string>
     <string name="enterName">Beam me up Scotty?</string>
     <string name="hint_name">Name</string>
-
+    <string name="new_image_toast">New Image saved ID: </string>
 
 
 </resources>
