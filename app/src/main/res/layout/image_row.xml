@@ -8,7 +8,7 @@
         android:id="@+id/rowTitle"
         android:textColor="@color/yellowOrange"
         android:textSize="25dp"
-        android:textAlignment="center"
+
         />
     <TextView
         android:layout_below="@id/rowTitle"
