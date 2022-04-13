@@ -28,7 +28,6 @@ import java.util.Random;
  * @see com.example.finalproject.LogInActivity
  *
  * This activity binds to DrawerBaseActivity for navigation drawer and toolbar.
- *
  * @see com.example.finalproject.DrawerBaseActivity
  *
  */

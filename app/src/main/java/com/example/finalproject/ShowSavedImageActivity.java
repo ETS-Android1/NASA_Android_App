@@ -183,6 +183,7 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
                     deleteImage(selectedImage);
                     imageList.remove(position);
                     myAdapter.notifyDataSetChanged();
+
                 })
                 .setPositiveButton("Cancel", (click, b) -> { })
                 .create().show();
