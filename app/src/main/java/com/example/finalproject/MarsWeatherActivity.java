@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -28,6 +27,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * The MarsWeatherActivity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ * This activity pulls data from MarsWeatherQuery API
+ * to display Mars weather to users
+ *
+ * This activity binds to DrawerBaseActivity for navigation drawer and toolbar.
+ *
+ * @see com.example.finalproject.DrawerBaseActivity
+ *
+ */
+
 public class MarsWeatherActivity extends DrawerBaseActivity {
 
     TextView actTitle;
@@ -41,6 +55,10 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
 
     ActivityMarsWeatherBinding activityMarsWeatherBinding;
 
+    /**
+     * On creation of this activity binding is used to share nav drawer and toolbar
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +72,9 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         // set title of nav drawer to activity name
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
-        ((TextView) headView.findViewById(R.id.activityTitle)).setText("Mars Weather");
-
+        ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.mars_weather_page);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.mars_weather_version);
+        //use variables to grab xml items by id
         actTitle = findViewById(R.id.activityTitle);
         currentSol = findViewById(R.id.solDisplay);
         tempHigh = findViewById(R.id.tempHighDisplay);
@@ -76,6 +95,9 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         req.execute("https://api.maas2.apollorion.com/");
     }
 
+    /**
+     * Asynctask used to query API
+     */
     class MarsWeatherQuery extends AsyncTask<String, Integer, String> {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -108,12 +130,13 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
                 String tempString = weatherData.getString("terrestrial_date");
 
                 //Date conversion logic
+                boolean curLanguage = Locale.getDefault().getISO3Language().equals(Locale.CANADA.getISO3Language());
                 LocalDateTime date = LocalDateTime.parse(tempString, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-                formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
-                Log.d("Date", String.valueOf(date));
-                Log.d("Date", String.valueOf(formattedDate));
-
-
+                if (curLanguage != true) {
+                    formattedDate = date.format(DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.CANADA_FRENCH));
+                }else {
+                    formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, uuuu", Locale.CANADA));
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,6 +149,11 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         protected void onProgressUpdate(Integer... args) {
             super.onProgressUpdate(args);
         }
+
+        /**
+         * upon completion of AsyncTask this method will execute
+         * @param s
+         */
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
@@ -148,6 +176,11 @@ public class MarsWeatherActivity extends DrawerBaseActivity {
         }
     }
 
+    /**
+     * This method programs animation into display of mars weather
+     * @param curNum
+     * @param updatingView
+     */
     private void startCountAnimation(String curNum, TextView updatingView) {
 
         int num = Integer.parseInt(curNum);

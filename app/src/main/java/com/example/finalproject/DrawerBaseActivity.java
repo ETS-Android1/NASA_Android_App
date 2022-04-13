@@ -16,11 +16,30 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ * The DrawerBaseActivity
+ *
+ * @author Aladah M + Will B
+ * @version 1.00
+ *
+ * This is the activty to which all other activities extend from
+ * to allow a common navigation drawer and toolbar throughout the app
+ *
+ * @see androidx.appcompat.app.AppCompatActivity
+ * @see com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
+ *
+ *
+ */
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
+    /**
+     * This method sets UI to show nav drawer and toolbar
+     * @param view
+     */
     @Override
     public void setContentView(View view) {
         //inflate drawer layout
@@ -31,22 +50,29 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         super.setContentView(drawerLayout);
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
+        //set the toolbar to appropriate layout
         setSupportActionBar(toolbar);
-        //toolbar.inflateMenu(R.menu.main_drawer_menu);
-
-        NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
+        //set nav drawer to appropriate layout
+        navigationView = drawerLayout.findViewById(R.id.nav_view);
         //must implement onNavigationItemSelected method
         navigationView.setNavigationItemSelectedListener(this);
-
+        //set nav drawer to toggle open when user mouse is on it
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_drawer_open, R.string.menu_drawer_closed);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
+    /**
+     * This method describes what happens when each item in nav drawer is clicked
+     * Each icon has an associated activity to open
+     * @param item menu items
+     * @return true when successfully completed
+     */
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
-
+        //id to identify which item is clicked
         int id = item.getItemId();
 
         if (id == R.id.helmet) {
@@ -66,7 +92,9 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.moon) {
             finishAffinity();
         }
-        return false;
+
+
+        return true;
     }
 
     //for toolbar menu
@@ -77,10 +105,16 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
-    //for toolbar icon options
+    /**
+     * This method describes what happens when each item in toolbar is clicked
+     *  Each icon has an associated activity to open
+     * @param item
+     * @return true when successfully completes
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.helmet) {
             startActivity(new Intent(this, LogInActivity.class));
             overridePendingTransition(0, 0);
@@ -102,13 +136,20 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
-
+    /**
+     * this method is used by each activity to set the appropriate title to nav drawer heading
+     * @param titleString
+     */
     protected void allocateActivityTitle(String titleString) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(titleString);
         }
     }
 
+    /**
+     * This method switches the help dialog text pop up to correspond to each activity
+     *
+     */
     public void HelpDialogSwitcher() {
         String activityName = this.getClass().getSimpleName();
         String activityNameDisplay = null;

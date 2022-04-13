@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:datePickerMode="calendar"
-        android:minDate="1995-05-05"
+        android:minDate="06/16/1995"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></DatePicker>
@@ -24,7 +24,7 @@
         android:id="@+id/selectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show me the image!"
+        android:text="@string/date_picker_button_text_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
 
             <TextView
@@ -24,15 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Mars Weather"
+                android:text="@string/mars_weather_title"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/weatherCardView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/weatherCardView"
@@ -62,10 +62,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
                             android:adjustViewBounds="true"
+                            android:contentDescription="@string/image_of_mars_content_description"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/mars_planet"></ImageView>
+                            android:src="@drawable/mars_planet" />
 
                         <View
                             android:layout_width="match_parent"
@@ -95,9 +95,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center|top"
-                                android:text="Sol"
+                                android:text="@string/mars_weather_sol"
                                 android:textColor="@color/white"
-                                android:textSize="70dp"
+                                android:textSize="70sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -107,9 +107,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="test"
+                                android:text="@string/mars_weather_current_sol_default"
                                 android:textColor="@color/white"
-                                android:textSize="70dp">
+                                android:textSize="70sp">
 
                             </TextView>
 
@@ -129,10 +129,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="bottom|right"
-                                android:text="High: "
+                                android:gravity="bottom|end"
+                                android:text="@string/mars_weather_temp_high"
                                 android:textColor="@color/white"
-                                android:textSize="20dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -142,10 +142,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="right|top"
-                                android:text="tempHigh \u2103"
+                                android:gravity="end|top"
+                                android:text="@string/mars_weather_temp_high_fetch_default"
                                 android:textColor="@color/white"
-                                android:textSize="20dp">
+                                android:textSize="20sp">
 
                             </TextView>
 
@@ -155,10 +155,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="bottom|right"
-                                android:text="Low: "
+                                android:gravity="bottom|end"
+                                android:text="@string/mars_weather_temp_low"
                                 android:textColor="@color/white"
-                                android:textSize="20dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -168,19 +168,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="top|right"
-                                android:text="tempLow \u2103"
+                                android:gravity="top|end"
+                                android:text="@string/mars_weather_temp_low_fetch_default"
                                 android:textColor="@color/white"
-                                android:textSize="20dp">
+                                android:textSize="20sp">
 
                             </TextView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-
 
                         </LinearLayout>
 
@@ -195,7 +188,7 @@
                             android:id="@+id/currentDateTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Terrestrial Date (Last Updated)"
+                            android:text="@string/mars_weather_terrestrial_date"
                             android:textColor="@color/white"
                             android:textStyle="bold">
 
@@ -205,7 +198,7 @@
                             android:id="@+id/currentDateDisplay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="curDate"
+                            android:text="@string/mars_weather_current_date_default"
                             android:textColor="@color/white">
 
                         </TextView>

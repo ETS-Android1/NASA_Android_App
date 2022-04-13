@@ -3,46 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragmentLocation">
+    android:id="@+id/fragmentLocation"
+    android:background="@color/black">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragmentImageTitle"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="25sp"
+        android:textColor="@color/yellowOrange"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/fragmentImageDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragmentImageTitle"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/fragmentImageDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragmentImageDate"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/blueComplement"
+        android:textAlignment="center"/>
 
     <TextView
-        android:visibility="gone"
+        android:id="@+id/fragmentImageUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragmentImageUrl"
         android:layout_below="@id/fragmentImageHDurl"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/fragmentImageHDurl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragmentImageDescription"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAlignment="center"/>
 
 </RelativeLayout>

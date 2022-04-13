@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowSavedImageActivity">
+    tools:context=".ShowSavedImageActivity"
+    android:background="@color/black">
 
 
         <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/the_list"/>
+        android:id="@+id/the_list"
+
+            android:textAlignment="center"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

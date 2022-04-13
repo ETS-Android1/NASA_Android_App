@@ -1,43 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"></string>
-    <string name="menu_drawer_open">Open</string>
-    <string name="menu_drawer_closed">Closed</string>
-    <string name="appAct">Activity Name placeholer</string>
-    <string name="newsPage">News Page</string>
-    <string name="logInPage">Please enter your name</string>
-    <string name="activityTitle">Welcome</string>
-    <string name="bookmarkActivityTitle">Bookmark Page</string>
-    <string name="open">open</string>
-    <string name="close">closed</string>
-    <string name="hd_url_link">Click here to see HD Image</string>
-    <string name="myImages">My Images</string>
-    <string name="searchMenu">Search</string>
-    <string name="homeMenu">Home</string>
-    <string name="marsWeather">Mars Weather</string>
-    <string name="exit">Exit</string>
-    <string name="enterNameButton">Submit</string>
-    <string name="enterName">Beam me up Scotty?</string>
-    <string name="help">Help</string>
-    <string name="alert_acknowledge">Okay</string>
+    <!--Activity Titles-->
+    <string name="landing_page">Landing Page</string>
+    <string name="date_picker_page">AOTD Date Picker</string>
+    <string name="user_id_page">User Information</string>
+    <string name="mars_weather_page">Mars Weather</string>
+    <string name="aotd_page">Astronomy Image of the Day</string>
+    <string name="saved_image_page">Saved Images</string>
+
+    <!--Help Dialogs-->
     <string name="alert_saved_image_list_message">View all of your saved images here- click on the list item to view details regarding the image; long press on a list item to delete it.</string>
     <string name="alert_show_image_message">Here you can view the astronomy image/video for the specified date! Each post includes a detailed description of the image, along with a link to the HD image/full video. If you like the image/video, be sure to save it by pressing the button in the bottom right corner.</string>
     <string name="alert_mars_weather_message">Ever wondered what the weather is like on Mars? Never forget to bring a jacket out on your leisurely trip up Olympus Mons again thanks to this handy activity! The activity provides weather information from the most recent data gathered by the Curiosity Rover, using the MAAS 2 Rest API.</string>
     <string name="alert_date_picker_message">Pick a date from the calendar below in order to see the corresponding Astronomy Image of the Day.</string>
     <string name="alert_log_in_message">Provide your name (or Social Security Number, if you would prefer) in the text field below to personalize your experience in the app!</string>
-    <string name="alert_main_message">Welcome to Will Brisebois and Aladah Moore\'s final project for CST2335! The application, based on the prompt to produce an application centrered on NASA\'s Astronomy Image of the Day, presents 4 distinct activities: an elective identification page, an image viewing page, a saved image list, and a mars weather page. Please use the navigation bar or toolbar to view the activity of your choice!</string>
-    <string name="video_link">Click for Full Video</string>
-    <string name="save_video">save video</string>
-    <string name="frag_view_image">View Image</string>
-    <string name="snackbar_message">Welcome</string>
-    <string name="snackbar_undo">Undo</string>
-    <string name="imageTitleDetails">"Title: "</string>
-    <string name="imageDateDetails">Date: </string>
-    <string name="imageDescriptionDetails">Description: </string>
-    <string name="imageHdUrlDetails">HD URL: </string>
+    <string name="alert_main_message">Welcome to Will Brisebois and Aladah Moore\'s final project for CST2335! The application, based on the prompt to produce a program centrered on NASA\'s Astronomy Image of the Day, presents 4 distinct activities: an elective identification page, an image viewing page, a saved image list, and a mars weather page. Please use the navigation bar or toolbar to view the activity of your choice!</string>
     <string name="alert_title_main">Landing Page</string>
     <string name="alert_title_log_in">Log In Page</string>
     <string name="alert_title_picker">Date Selector</string>
     <string name="alert_title_weather">Mars Weather</string>
     <string name="alert_title_image">Astronomy Image of the Day</string>
     <string name="alert_title_image_list">Saved Images List</string>
+
+    <!--Clickable Dialogs-->
+    <string name="save_video">save Video</string>
+    <string name="save_image">Save Image</string>
+    <string name="video_link">Click for Full Video</string>
+    <string name="hd_url_link">Click here to see HD Image</string>
+    <string name="frag_view_image">View Image</string>
+    <string name="enterNameButton">Submit</string>
+    <string name="date_picker_button_text">Please pick a date %s</string>
+    <string name="date_picker_button_text_default">Please select a date</string>
+
+    <!--Menu Item Titles-->
+    <string name="myImages">Saved Images</string>
+    <string name="searchMenu">Astronomy Image of the Day</string>
+    <string name="userMenu">User Information</string>
+    <string name="marsWeather">Mars Weather</string>
+    <string name="exit">Exit</string>
+    <string name="help">Help</string>
+
+    <!--Toasts and SnackBar General-->
+    <string name="alert_acknowledge">Okay</string>
+    <string name="snackbar_message">Welcome</string>
+    <string name="snackbar_undo">Undo</string>
+
+    <!--Landing Page Greetings-->
+    <string name="no_information_greeting">Please go to the user information page to personalize your experience!</string>
+    <string name="greet1">Welcome back, %s!</string>
+    <string name="greet2">Hi %s, why don\'t you go look at today\'s astronomy image?</string>
+    <string name="greet3">You MUST be wondering how cold it is on Mars today, %s. Go check it out!</string>
+
+    <!--Fragment Detail Categories-->
+    <string name="imageTitleDetails">"Title: "</string>
+    <string name="imageDateDetails">Date: </string>
+    <string name="imageDescriptionDetails">Description: </string>
+    <string name="imageHdUrlDetails">HD URL: </string>
+
+    <!--Content Descriptions-->
+    <string name="aotd_content_description">Astronomy image of the day</string>
+
+    <!--Mars Weather Texts-->
+    <string name="mars_weather_title">Mars Weather</string>
+    <string name="image_of_mars_content_description">Image of Mars</string>
+    <string name="mars_weather_sol">Sol</string>
+    <string name="mars_weather_current_sol_default">0</string>
+    <string name="mars_weather_temp_high">High:</string>
+    <string name="mars_weather_temp_high_fetch_default">tempHigh ℃</string>
+    <string name="mars_weather_terrestrial_date">Terrestrial Date (Last Updated)</string>
+    <string name="mars_weather_temp_low">Low:</string>
+    <string name="mars_weather_temp_low_fetch_default">tempLow ℃</string>
+    <string name="mars_weather_current_date_default">curDate</string>
+
+    <!--Version Information-->
+    <string name="saved_image_version">1.00</string>
+    <string name="aotd_version">1.00</string>
+    <string name="mars_weather_version">1.00</string>
+    <string name="landing_page_version">1.00</string>
+    <string name="user_id_version">1.00</string>
+    <string name="date_picker_version">1.00</string>
+    <string name="version_title">Version:</string>
+
+    <!--Miscellaneous-->
+    <string name="app_name"></string>
+    <string name="menu_drawer_open">Open</string>
+    <string name="menu_drawer_closed">Closed</string>
+    <string name="appAct">Activity Name placeholer</string>
+    <string name="newsPage">News Page</string>
+    <string name="logInPage">Please Enter your Name</string>
+    <string name="activityTitle">Welcome</string>
+    <string name="bookmarkActivityTitle">Bookmark Page</string>
+    <string name="open">open</string>
+    <string name="close">closed</string>
+    <string name="enterName">Beam me up Scotty?</string>
+    <string name="hint_name">Name</string>
+
+
+
 </resources>
