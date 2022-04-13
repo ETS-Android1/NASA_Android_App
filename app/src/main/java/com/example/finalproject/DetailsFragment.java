@@ -70,6 +70,10 @@ public class DetailsFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * @param context
+     */
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         //context to be empty activity for phone

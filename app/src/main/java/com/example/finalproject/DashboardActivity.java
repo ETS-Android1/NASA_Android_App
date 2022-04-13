@@ -7,10 +7,17 @@ import android.widget.TextView;
 import com.example.finalproject.databinding.ActivityDashboardBinding;
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ *
+ */
 public class DashboardActivity extends DrawerBaseActivity  {
     //create the binding
     ActivityDashboardBinding activityDashBoardBinding;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
