@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     public void setContentView(View view) {
@@ -34,7 +35,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         setSupportActionBar(toolbar);
         //toolbar.inflateMenu(R.menu.main_drawer_menu);
 
-        NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
+        navigationView = drawerLayout.findViewById(R.id.nav_view);
         //must implement onNavigationItemSelected method
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -66,7 +67,9 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.moon) {
             finishAffinity();
         }
-        return false;
+
+
+        return true;
     }
 
     //for toolbar menu
@@ -81,6 +84,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.helmet) {
             startActivity(new Intent(this, LogInActivity.class));
             overridePendingTransition(0, 0);

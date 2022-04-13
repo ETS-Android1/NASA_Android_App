@@ -3,10 +3,10 @@
     <!--Activity Titles-->
     <string name="landing_page">Page d\'accueil</string>
     <string name="date_picker_page">Sélecteur de date AOTD</string>
-    <string name="user_id_page">Page d\'identification</string>
-    <string name="mars_weather_page">Météo sur Mars</string>
+    <string name="user_id_page">Infos utilisateur</string>
+    <string name="mars_weather_page">La météo de Mars</string>
     <string name="aotd_page">Image astronomique du jour</string>
-    <string name="saved_image_page">Liste d\'images sauvegardées</string>
+    <string name="saved_image_page">Images sauvegardées</string>
 
     <!--Help Dialogs-->
     <string name="alert_saved_image_list_message">Visualisez toutes vos images sauvegardées ici- cliquez sur l\'élément de la liste pour voir les détails de l\'image; appuyez longuement sur un élément de la liste pour le supprimer.</string>
@@ -33,8 +33,8 @@
     <string name="date_picker_button_text_default">Choisissez une date</string>
 
     <!--Menu Item Titles-->
-    <string name="myImages">Mes images</string>
-    <string name="searchMenu">Recherche</string>
+    <string name="myImages">Images sauvegardées</string>
+    <string name="searchMenu">Image astronomique du jour</string>
     <string name="userMenu">Infos utilisateur</string>
     <string name="marsWeather">La météo de Mars</string>
     <string name="exit">Sortir</string>
@@ -84,4 +84,5 @@
     <string name="open">Ouvert</string>
     <string name="close">Fermé</string>
     <string name="enterName">Téléportez-moi Scotty?</string>
+    <string name="hint_name">Nom</string>
 </resources>

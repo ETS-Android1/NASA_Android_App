@@ -22,19 +22,23 @@
             android:exported="false" />
         <activity
             android:name=".MarsWeatherActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".ShowSavedImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".ShowImageActivity"
             android:exported="false" />
         <activity
             android:name=".LogInActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".EnterDateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".DrawerBaseActivity"
             android:exported="false" />

@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.example.finalproject.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,9 +22,9 @@ public class MainActivity extends DrawerBaseActivity {
     //initialize shared preferences
     SharedPreferences prefs = null;
     TextView greeting;
+    CardView cd;
     String full;
-    Animation fadeInGreeting;
-
+    Animation slideGreeting;
 
 
     @Override
@@ -62,9 +64,13 @@ public class MainActivity extends DrawerBaseActivity {
             }
         }
         greeting.setText(full);
-        fadeInGreeting = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-        fadeInGreeting.setStartOffset(250);
-        greeting.startAnimation(fadeInGreeting);
+
+        //Animate CardView
+        cd = findViewById(R.id.main_activity_card);
+
+        slideGreeting = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up);
+        slideGreeting.setStartOffset(250);
+        cd.startAnimation(slideGreeting);
 
 
 

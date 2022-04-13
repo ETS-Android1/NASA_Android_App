@@ -3,10 +3,10 @@
     <!--Activity Titles-->
     <string name="landing_page">Landing Page</string>
     <string name="date_picker_page">AOTD Date Picker</string>
-    <string name="user_id_page">User Identifier</string>
+    <string name="user_id_page">User Information</string>
     <string name="mars_weather_page">Mars Weather</string>
     <string name="aotd_page">Astronomy Image of the Day</string>
-    <string name="saved_image_page">Saved Images List</string>
+    <string name="saved_image_page">Saved Images</string>
 
     <!--Help Dialogs-->
     <string name="alert_saved_image_list_message">View all of your saved images here- click on the list item to view details regarding the image; long press on a list item to delete it.</string>
@@ -33,8 +33,8 @@
     <string name="date_picker_button_text_default">Please select a date</string>
 
     <!--Menu Item Titles-->
-    <string name="myImages">My Images</string>
-    <string name="searchMenu">Search</string>
+    <string name="myImages">Saved Images</string>
+    <string name="searchMenu">Astronomy Image of the Day</string>
     <string name="userMenu">User Information</string>
     <string name="marsWeather">Mars Weather</string>
     <string name="exit">Exit</string>
@@ -78,13 +78,13 @@
     <string name="menu_drawer_closed">Closed</string>
     <string name="appAct">Activity Name placeholer</string>
     <string name="newsPage">News Page</string>
-    <string name="logInPage">Please enter your name</string>
+    <string name="logInPage">Please Enter your Name</string>
     <string name="activityTitle">Welcome</string>
     <string name="bookmarkActivityTitle">Bookmark Page</string>
     <string name="open">open</string>
     <string name="close">closed</string>
     <string name="enterName">Beam me up Scotty?</string>
-
+    <string name="hint_name">Name</string>
 
 
 </resources>

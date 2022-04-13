@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import com.example.finalproject.databinding.ActivityLogInBinding;
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +27,9 @@ public class LogInActivity extends DrawerBaseActivity {
     //initialize button to add name to shared preferences
     Button addNameButton;
     String savedName, previousSavedName;
+    TextView title;
+    CardView cd;
+    Animation slideCardDown, fadeInTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,20 @@ public class LogInActivity extends DrawerBaseActivity {
 
         textEntered.setText(savedName);
 
+        //Animate title TextView
+        title = findViewById(R.id.login_title);
+
+        fadeInTitle = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
+        fadeInTitle.setStartOffset(100);
+        title.startAnimation(fadeInTitle);
+
+        //Animate CardView
+        cd = findViewById(R.id.login_card);
+
+        slideCardDown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
+        slideCardDown.setStartOffset(500);
+        cd.startAnimation(slideCardDown);
+
         addNameButton = (Button) findViewById(R.id.enterNameButton);
         addNameButton.setOnClickListener(v -> {
             previousSavedName = savedName;
@@ -56,6 +77,7 @@ public class LogInActivity extends DrawerBaseActivity {
 //                openDateActivity();
             //Create SnackBar to allow user to see confirmation of changes, as well as undo and re-enter their name
             Snackbar.make(textEntered, getResources().getString(R.string.snackbar_message) + " " + savedName + "!", Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.snackbar_undo), new NameInputUndoListener()).show();
+
         });}
 
         public void openDateActivity () {
