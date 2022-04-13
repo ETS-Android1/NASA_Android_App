@@ -79,6 +79,7 @@ public class ShowImageActivity extends DrawerBaseActivity {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.aotd_page);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.aotd_version);
 
         //Receive date from DatePicker in previous Activity
         Intent receivedDate = getIntent();

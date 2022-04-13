@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:padding="20dp"
     android:background="@color/blueComplement"
@@ -9,9 +9,10 @@
     <!-- header of nav drawer -->
     <ImageView
         android:paddingTop="30dp"
-        android:layout_width="160dp"
-        android:layout_height="140dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:src="@drawable/ic_nasasuit" />
 
     <TextView
@@ -21,7 +22,40 @@
         android:text="@string/activityTitle"
         android:textColor="@color/yellowOrange"
         android:layout_gravity="center"
+        android:layout_weight="2"
         android:textSize="15sp"
         android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_weight="3">
+
+        <TextView
+            android:id="@+id/activityVersionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version_title"
+            android:textColor="@color/yellowOrange"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/activityVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.00"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

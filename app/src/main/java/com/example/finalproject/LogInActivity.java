@@ -42,6 +42,7 @@ public class LogInActivity extends DrawerBaseActivity {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText(R.string.user_id_page);
+        ((TextView) headView.findViewById(R.id.activityVersion)).setText(R.string.user_id_version);
 
         //get edit text
         textEntered = (EditText) findViewById(R.id.enterName);
