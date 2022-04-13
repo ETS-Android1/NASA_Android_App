@@ -1,18 +1,18 @@
 package com.example.finalproject;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.finalproject.databinding.ActivityEnterDateBinding;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Date;
 
 public class EnterDateActivity extends DrawerBaseActivity {
 
@@ -34,24 +34,27 @@ public class EnterDateActivity extends DrawerBaseActivity {
         View headView = navigationView.getHeaderView(0);
         ((TextView) headView.findViewById(R.id.activityTitle)).setText("Pick a date");
 
+        Button dateSelectButton = findViewById(R.id.selectDate);
+
         //get name from shared preferences
         prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
-        String savedString = prefs.getString("TypedText", " " );
-        greeting = (TextView) findViewById(R.id.selectDate);
-        String full = "Show " + savedString + "that image!";
-        greeting.setText(full);
+        String savedString = prefs.getString("TypedText", " ");
+        String full = "Please pick a date " + savedString;
+        dateSelectButton.setText(full);
 
         //Create date picking widget
         android.widget.DatePicker calendar;
         calendar = findViewById(R.id.datePicker);
 
-        Button dateSelectButton = findViewById(R.id.selectDate);
-    dateSelectButton.setOnClickListener(click -> {
-        String dateSelected = calendar.getYear() + "-" + (calendar.getMonth() + 1) + "-" + calendar.getDayOfMonth();
+        //set Max date to current day
+        calendar.setMaxDate(new Date().getTime());
 
-        Intent sendDateInformation = new Intent(getBaseContext(), ShowImageActivity.class);
-        sendDateInformation.putExtra("Date", dateSelected);
-        startActivity(sendDateInformation);
-    });
+        dateSelectButton.setOnClickListener(click -> {
+            String dateSelected = calendar.getYear() + "-" + (calendar.getMonth() + 1) + "-" + calendar.getDayOfMonth();
+
+            Intent sendDateInformation = new Intent(getBaseContext(), ShowImageActivity.class);
+            sendDateInformation.putExtra("Date", dateSelected);
+            startActivity(sendDateInformation);
+        });
     }
 }

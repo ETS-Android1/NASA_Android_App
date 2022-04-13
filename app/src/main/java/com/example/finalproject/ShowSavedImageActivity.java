@@ -1,9 +1,5 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,11 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalproject.databinding.ActivityShowImageBinding;
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.finalproject.databinding.ActivityShowSavedImageBinding;
 import com.google.android.material.navigation.NavigationView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -30,9 +25,11 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
     String imageURL;
     String imageHDurl;
     String imageDesc;
+    String imageDate;
 
     ArrayList<DBImage> imageList = new ArrayList<>();
     private static int ACTIVITY_VIEW_IMAGE = 33;
+
     MyOwnAdapter myAdapter;
     SQLiteDatabase db;
 
@@ -58,19 +55,65 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         myAdapter = new MyOwnAdapter();
         theList.setAdapter(myAdapter);
 
+        //to check if frame layout has been loaded
+        //this is the id of the empty activity layout
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
+
         //if a list item is clicked
-        theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
+        theList.setOnItemClickListener(( list,  view,  position,  id) -> {
             //show text box with option to delete
-            showImage( position );
+            //showImage( position );
+
+            //for bundle to fragment
+            Bundle dataToPass = new Bundle();
+
+            String imageTitle = imageList.get( position).getTitle();
+            String imageDate = imageList.get( position ).getDate();
+            String imageDescription = imageList.get( position ).getDescription();
+            String imageHDurl = imageList.get( position ).getHDurl();
+            String imageUrl = imageList.get( position ).getUrl();
+
+            dataToPass.putString("imageTitle", imageTitle);
+            dataToPass.putString("imageDate", imageDate);
+            dataToPass.putString("imageDescription", imageDescription);
+            dataToPass.putString("imageHDurl", imageHDurl);
+            dataToPass.putString("imageUrl", imageUrl);
+
+            if (isTablet) //If you are on a tablet,
+
+                {
+                    DetailsFragment parent = new DetailsFragment();
+                    parent.setArguments( dataToPass );
+                    getSupportFragmentManager()
+                            .beginTransaction().replace(R.id.fragmentLocation, parent).commit();
+
+                } else //isPhone
+                    {
+                        //activity to open fragment
+                        Intent nextActivity = new Intent(ShowSavedImageActivity.this, EmptyActivity.class);
+                        //put selected image information in that opened fragment
+                        nextActivity.putExtras(dataToPass);
+                        //start activity
+                        startActivity(nextActivity);
+                    }
+
+
         });
 
-        //Receive date from DatePicker in previous Activity
+        theList.setOnItemLongClickListener(( list,  view,  position,  id) -> {
+            showImage(position);
+
+            return true;
+        });
+
+
+                    //Receive data from show image activity of image user wants to save
         Intent receivedImageTitle = getIntent();
-        //datePassed = receivedDate.getStringExtra("Date");
         imageTitle = receivedImageTitle.getStringExtra("Title");
         imageURL = receivedImageTitle.getStringExtra("url");
-        imageHDurl = receivedImageTitle.getStringExtra("hdurl");
-        imageDesc = receivedImageTitle.getStringExtra("desc");
+        imageHDurl = receivedImageTitle.getStringExtra("HDurl");
+        imageDesc = receivedImageTitle.getStringExtra("explanation");
+        imageDate = receivedImageTitle.getStringExtra("date");
 
 
         //add to database
@@ -82,10 +125,11 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
             newRowValues.put(DBOpener.COL_IMAGE_URL, imageURL);
             newRowValues.put(DBOpener.COL_IMAGE_HDURL, imageHDurl);
             newRowValues.put(DBOpener.COL_IMAGE_DESC, imageDesc);
+            newRowValues.put(DBOpener.COL_IMAGE_DATE, imageDate);
             //insert row values into DB and create ID number
             long newId = db.insert(DBOpener.TABLE_NAME, null, newRowValues);
             //create new Image Object
-            DBImage newImage = new DBImage(imageTitle, imageURL, newId);
+            DBImage newImage = new DBImage(imageTitle, imageURL, imageHDurl, newId, imageDate, imageDesc);
             //add image object to list
             imageList.add(newImage);
 
@@ -105,13 +149,13 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         TextView rowId = image_view.findViewById(R.id.imageIdToDelete);
 
         imageToDelete.setText(selectedImage.getTitle());
-        rowId.setText("Title: ");
+        //rowId.setText("Title:");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete image: " +position +"?")
-                .setMessage("This cannot be undone")
+        builder.setTitle("DELETE")
+                .setMessage("Confirm removal of: ")
                 .setView(image_view)
-                .setNegativeButton("Confirm Delete", (click, b) -> {
+                .setNegativeButton("Delete", (click, b) -> {
                     deleteImage(selectedImage);
                     imageList.remove(position);
                     myAdapter.notifyDataSetChanged();
@@ -130,24 +174,28 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
         DBOpener dbOpener = new DBOpener(this);
         db = dbOpener.getWritableDatabase();
 
-        String [] columns = {DBOpener.COL_ID, DBOpener.COL_IMAGE_TITLE, DBOpener.COL_IMAGE_URL, DBOpener.COL_IMAGE_HDURL, DBOpener.COL_IMAGE_DESC};
+        String [] columns = {DBOpener.COL_ID, DBOpener.COL_IMAGE_TITLE, DBOpener.COL_IMAGE_DATE, DBOpener.COL_IMAGE_URL, DBOpener.COL_IMAGE_HDURL, DBOpener.COL_IMAGE_DESC};
 
         //query all results in a cursor
-        Cursor results = db.query(false, DBOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, DBOpener.TABLE_NAME, columns, null, null, null, null, null, null, null);
 
         int idColIndex = results.getColumnIndex(DBOpener.COL_ID);
         int titleColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_TITLE);
         int urlColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_URL);
         int HDurlColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_HDURL);
         int descColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_DESC);
+        int dateColumnIndex = results.getColumnIndex(DBOpener.COL_IMAGE_DATE);
 
         while(results.moveToNext())
         {
             String title = results.getString(titleColumnIndex);
             String url = results.getString(urlColumnIndex);
+            String HDurl = results.getString(HDurlColumnIndex);
             long id = results.getLong(idColIndex);
+            String date = results.getString(dateColumnIndex);
+            String desc = results.getString(descColumnIndex);
 
-            imageList.add(new DBImage(title, url, id));
+            imageList.add(new DBImage(title, url, HDurl, id, date, desc));
         }
     }
     protected class MyOwnAdapter extends BaseAdapter {
@@ -177,12 +225,12 @@ public class ShowSavedImageActivity extends DrawerBaseActivity {
 
             //get textviews from rows
             TextView imageTitle = (TextView)newView.findViewById(R.id.rowTitle);
-            TextView imageURL = (TextView) newView.findViewById(R.id.rowURL);
-            TextView rowId = (TextView)newView.findViewById(R.id.row_id);
+            TextView imageDate = (TextView) newView.findViewById(R.id.rowDate);
+            //TextView rowId = (TextView)newView.findViewById(R.id.row_id);
 
             imageTitle.setText( thisRow.getTitle());
-            imageURL.setText( thisRow.getUrl());
-            rowId.setText("ID: " + thisRow.getID());
+            imageDate.setText( thisRow.getDate());
+            //rowId.setText("ID: " + thisRow.getID());
 
             //return the row
             return newView;
