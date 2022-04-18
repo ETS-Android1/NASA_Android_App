@@ -1,10 +1,3 @@
-# FinalProject for CST2335
-
-Aladah M + Will B
-
-CST 2335_450
-
-Ben Dennerley
 
 
 This is a mobile application programmed using Java and Android Studio.
